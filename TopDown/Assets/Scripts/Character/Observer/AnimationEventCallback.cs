@@ -1,0 +1,7 @@
+﻿
+namespace Observer
+{
+    struct AnimationEventCallback
+    {
+    }
+}

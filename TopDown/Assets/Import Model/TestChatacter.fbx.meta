@@ -1,0 +1,398 @@
+fileFormatVersion: 2
+guid: 0a17c626a0f772745803f06f21a3dfaf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arm_1.L
+    100002: Arm_1.R
+    100004: Arm_2.L
+    100006: Arm_2.R
+    100008: Armature
+    100010: B_Finger-2.L
+    100012: B_Finger-2.L_end
+    100014: B_Finger-2.R
+    100016: B_Finger-2.R_end
+    100018: B_Finger_1.L
+    100020: B_Finger_1.R
+    100022: Cube
+    100024: Foot.L
+    100026: Foot.L_end
+    100028: Foot.R
+    100030: Foot.R_end
+    100032: Head
+    100034: Head_end
+    100036: Heand_1.L
+    100038: Heand_1.R
+    100040: Heand_2.L
+    100042: Heand_2.L_end
+    100044: Heand_2.R
+    100046: Heand_2.R_end
+    100048: HeandRoot.L
+    100050: HeandRoot.R
+    100052: IK_Arm.L
+    100054: IK_Arm.R
+    100056: IK_leg.L
+    100058: IK_leg.R
+    100060: Left Heand Point
+    100062: Left Heand Point_end
+    100064: Leg-2.L
+    100066: Leg_1.L
+    100068: Leg_1.R
+    100070: Leg_2.R
+    100072: Right Heand Point
+    100074: Right Heand Point_end
+    100076: RootBone
+    100078: Spine_1
+    100080: Spine_2
+    100082: //RootNode
+    100084: Vector_ARM.L
+    100086: Vector_ARM.L_end
+    100088: Vector_ARM.R
+    100090: Vector_ARM.R_end
+    100092: Vector_LEG.L
+    100094: Vector_LEG.L_end
+    100096: Vector_LEG.R
+    100098: Vector_LEG.R_end
+    400000: Arm_1.L
+    400002: Arm_1.R
+    400004: Arm_2.L
+    400006: Arm_2.R
+    400008: Armature
+    400010: B_Finger-2.L
+    400012: B_Finger-2.L_end
+    400014: B_Finger-2.R
+    400016: B_Finger-2.R_end
+    400018: B_Finger_1.L
+    400020: B_Finger_1.R
+    400022: Cube
+    400024: Foot.L
+    400026: Foot.L_end
+    400028: Foot.R
+    400030: Foot.R_end
+    400032: Head
+    400034: Head_end
+    400036: Heand_1.L
+    400038: Heand_1.R
+    400040: Heand_2.L
+    400042: Heand_2.L_end
+    400044: Heand_2.R
+    400046: Heand_2.R_end
+    400048: HeandRoot.L
+    400050: HeandRoot.R
+    400052: IK_Arm.L
+    400054: IK_Arm.R
+    400056: IK_leg.L
+    400058: IK_leg.R
+    400060: Left Heand Point
+    400062: Left Heand Point_end
+    400064: Leg-2.L
+    400066: Leg_1.L
+    400068: Leg_1.R
+    400070: Leg_2.R
+    400072: Right Heand Point
+    400074: Right Heand Point_end
+    400076: RootBone
+    400078: Spine_1
+    400080: Spine_2
+    400082: //RootNode
+    400084: Vector_ARM.L
+    400086: Vector_ARM.L_end
+    400088: Vector_ARM.R
+    400090: Vector_ARM.R_end
+    400092: Vector_LEG.L
+    400094: Vector_LEG.L_end
+    400096: Vector_LEG.R
+    400098: Vector_LEG.R_end
+    2100000: No Name
+    4300000: Cube
+    7400000: Armature|Attack_Combat_Sword_1
+    7400002: Armature|Attack_Combat_Sword_2
+    7400004: Armature|Idle_Combat_Sword
+    7400006: Armature|Idle_Empty_0
+    7400008: Armature|Idle_Empty_1
+    7400010: Armature|Run_Empty
+    7400012: Armature|T-Pose
+    9500000: //RootNode
+    13700000: Cube
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Attack_Combat_Sword_1
+      takeName: Armature|Attack_Combat_Sword_1
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Attack_Combat_Sword_2
+      takeName: Armature|Attack_Combat_Sword_2
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle_Combat_Sword
+      takeName: Armature|Idle_Combat_Sword
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle_Empty_0
+      takeName: Armature|Idle_Empty_0
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle_Empty_1
+      takeName: Armature|Idle_Empty_1
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Run_Empty
+      takeName: Armature|Run_Empty
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|T-Pose
+      takeName: Armature|T-Pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
