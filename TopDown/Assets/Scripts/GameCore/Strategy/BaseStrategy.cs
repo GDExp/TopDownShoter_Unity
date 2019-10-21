@@ -2,19 +2,26 @@
 
 namespace GameCore.Strategy
 {
-    class BaseStrategy
+    class BaseStrategy<T>: IStrategy
+        where T: Character.AbstractCharacter
     {
+        protected T owner;
         protected IStateMachine stateMachine;
-        protected bool isCombat;
 
-        public BaseStrategy(IStateMachine stateMachine)
+        public BaseStrategy(T owner)
         {
-            this.stateMachine = stateMachine;
+            this.owner = owner;
+            stateMachine = owner.GetStateMachine() as IStateMachine;
         }
 
-        public void CombatTransition()
+        public virtual void DoStrategy()
         {
-            isCombat = !isCombat;
+
+        }
+        //it remove?s
+        public void EndStrategy()
+        {
+
         }
     }
 }

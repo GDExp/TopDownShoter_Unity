@@ -9,37 +9,50 @@ using Observer;
 
 namespace Character
 {
-    public interface ISetupCharacter
+    public interface ICharacter
     {
         void InvokeSetupCharacter();
+        void UpdateCharacter();
     }
 
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
-    public class AbstractCharacter : MonoBehaviour, ISetupCharacter, ISubject
+    public class AbstractCharacter : MonoBehaviour, ICharacter, ISubject
     {
         public CharacterValueSO characterValue;
 
-        private StatusController _statusController;
-        private IStateMachine _stateMachine;
+        protected NavigationController navigationController;
+        protected IStateMachine stateMachine;
+        protected StrategySwithcer strSwither;
+        protected StatusController statusController;
+
         private AnimationController _animationController;
-        private NavigatonController _navigationController;
         private ICombatController _combatController;
-
-        private StrategySwithcer strSwither;
-
+        
         private Dictionary<Type, List<IObserver>> _observers;
 
-        //test
         private void Start()
         {
-            SetupCharacter();
-            strSwither = new StrategySwithcer((this as PlayerCharacter)? new PlayerStrategy(_stateMachine):null);//TO DO Remove null!!
+            GameCore.GameController.Instance.AddInCharacterInList(this);
         }
-        //выполнение стратегии
-        //to test
-        private void Update()
+
+        private void OnDisable()
         {
-            strSwither?.StrategyIsWork();
+            GameCore.GameController.Instance.RemoveinCharacterInList(this);
+        }
+
+        public object GetStatusController()
+        {
+            return statusController;
+        }
+
+        public object GetStateMachine()
+        {
+            return stateMachine;
+        }
+        
+        public object GetNavigationController()
+        {
+            return navigationController;
         }
 
         public object GetAnimationController()
@@ -47,27 +60,22 @@ namespace Character
             return _animationController;
         }
 
-        public object GetNavigationController()
-        {
-            return _navigationController;
-        }
-
         public object GetCombatController()
         {
             return _combatController;
         }
-
-        public object GetCharacterStrategy()
-        {
-            return strSwither.GetStrategy();
-        }
-
-        //ISetupCharacter
+        
+        //ICharacter
         public void InvokeSetupCharacter()
         {
             SetupCharacter();
         }
-        
+        //ICharacter
+        public virtual void UpdateCharacter()
+        {
+            //do....
+        }
+
         //ISubject
         public void Subscribe(Type msgType, IObserver observer)
         {
@@ -120,15 +128,14 @@ namespace Character
 
         private void SetupStateMachine()
         {
-            //TO DO добавить возможность создания 
+            //TO DO добавить возможность создания дополнительного
             var product = new ProductDefaultState(this);
-            _stateMachine = new StateMachine<AbstractCharacter>(this, product?.CreateFunc);
+            stateMachine = new StateMachine<AbstractCharacter>(this, product?.CreateFunc);
         }
 
         private void SetupStatusController()
         {
-            var statusItems = characterValue.GetStatusValue();
-            _statusController = new StatusController(statusItems.Item1, statusItems.Item2);
+            statusController = new StatusController(characterValue);
         }
 
         private void SetupAnimationController()
@@ -169,13 +176,12 @@ namespace Character
 
         private void SetupNavigationController()
         {
-            _navigationController = new NavigatonController(this);
+            navigationController = new NavigationController(this);
         }
 
         private void SetupCombatController()
         {
             _combatController = new CombatController<AbstractCharacter>(this, gameObject);
-            //Subscribe(typeof(AnimationEventCallback), _combatController as IObserver);
         }
 
         private void CallAnimationEvent()

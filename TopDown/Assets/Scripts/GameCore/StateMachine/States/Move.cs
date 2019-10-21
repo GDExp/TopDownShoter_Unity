@@ -1,15 +1,17 @@
 ﻿using System;
-using GameCore.Strategy;
 using Character;
 
 namespace GameCore.StateMachine
 {
     class Move : State <AbstractCharacter>
     {
-        private IStrategy _localStrategy;
+        private AbstractMovementLogic<AbstractCharacter> _movementLogic;
+
         public Move(AbstractCharacter owner) : base(owner)
         {
-            _localStrategy = (owner as PlayerCharacter) ? new MovePlayerStrategy(owner) : null;//todo - add ENEMY move stategy
+
+            if (owner is PlayerCharacter) _movementLogic = new PlayerMovementLogic(owner);
+            else _movementLogic = new EnemyMovementLogic(owner);
         }
 
         public override void EnterState()
@@ -21,13 +23,13 @@ namespace GameCore.StateMachine
 
         public override Type UpdateState()
         {
-            //TO DO release Player and Enemy
-            _localStrategy.DoStrategy();
+            _movementLogic.WorkMovement();
             return GetType();
         }
 
         public override void ExitState()
         {
+            _movementLogic.InteractObstacle();
             CustomDebug.LogMessage("Move exit!", DebugColor.red);
             ICommand command = new ChangeAnimationCommand(owner, GetType());
             command.Execute();

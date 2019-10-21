@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using GameCore;
-using GameCore.Strategy;
+using GameCore.StateMachine;
 using Observer;
+
 
 namespace Character
 {
@@ -15,8 +16,8 @@ namespace Character
         where T : AbstractCharacter
     {
         private readonly T _owner;
-        private GameObject testHit;
-        private int _currnetAttackStep;
+        private IStateMachine _stateMachine;
+        private GameObject testHit;//it remove
         private bool isAttacked;
 
         public CombatController(T owner, GameObject ownerGO)
@@ -29,21 +30,8 @@ namespace Character
         public void HandleCommand(AnimationValue<AbstractCharacter> value)
         {
             _owner.Subscribe(typeof(AnimationEventCallback), this);
-            ToggleCurrentStrategyInCombat();
             isAttacked = true;
-        }
-
-        public void Attack()
-        {
-            //to do переделать в каст коллизий с дальнейшей обработкой урона
-            testHit.SetActive(!testHit.activeSelf);
-            isAttacked = !isAttacked;
-        }
-
-        private void ToggleCurrentStrategyInCombat()
-        {
-            var currentStrategy = _owner.GetCharacterStrategy() as BaseStrategy;
-            currentStrategy?.CombatTransition();
+            ToggleIsCombat();
         }
 
         public void UpdateObserver(Type subjectTypeCallback)
@@ -56,8 +44,23 @@ namespace Character
             {
                 _owner.Unsubscribe(typeof(AnimationEventCallback), this);
                 testHit.SetActive(!testHit.activeSelf);
-                ToggleCurrentStrategyInCombat();
-            }            
+                ToggleIsCombat();
+                if (_stateMachine is null) _stateMachine = _owner.GetStateMachine() as IStateMachine;
+                _stateMachine.ChangeState(typeof(Idle));
+            }
+        }
+
+        public void Attack()
+        {
+            //to do переделать в каст коллизий с дальнейшей обработкой урона
+            testHit.SetActive(!testHit.activeSelf);
+            isAttacked = !isAttacked;
+        }
+
+        private void ToggleIsCombat()
+        {
+            var status = _owner.GetStatusController() as StatusController;
+            status.isCombat = isAttacked;
         }
     }
 }

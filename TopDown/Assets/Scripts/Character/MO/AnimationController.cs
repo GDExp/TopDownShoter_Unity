@@ -9,12 +9,13 @@ namespace Character
 
     class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
     {
+        private const string AttackTrigger = "Attack";
+
         private readonly Dictionary<Type, string> _animatonKeys;
         private Animator _animator;
         private Type _currentTypeAnimation;
-        private CharacterStateType _currentStateType;
-
-
+        private bool _isAttackEvent;
+        
         public AnimationController(Animator animator, Dictionary<Type,string> animationKeys)
         {
             _animatonKeys = animationKeys;
@@ -26,36 +27,25 @@ namespace Character
         {
             _animator.SetFloat(_animatonKeys[inputValue.animationType], inputValue.animationValue);
             _currentTypeAnimation = inputValue.animationType;
-            _currentStateType = inputValue.stateType;
-            if (inputValue.isAttack) _animator.SetTrigger(inputValue.stateType.ToString());
+            if (inputValue.isAttack)
+            {
+                _animator.SetTrigger(AttackTrigger);//???
+                _isAttackEvent = true;
+            }
         }
 
         public void UpdateObserver(Type subjectTypeCallback)
         {
-            ProcessAnimationEvent();
-        }
-
-        private void ProcessAnimationEvent()
-        {
-            //Расширить!
-            switch (_currentStateType)
-            {
-                case (CharacterStateType.Attack):
-                    //AttackAnimationEvent();
-                    break;
-                default:
-                    ResetCurrentState();
-                    break;
-            }
-        }
-        
-        private void AttackAnimationEvent()
-        {
-            _currentStateType = CharacterStateType.None;
+            ResetCurrentState();
         }
 
         private void ResetCurrentState()
         {
+            if (_isAttackEvent)
+            {
+                _isAttackEvent = false;
+                return;
+            }
             _animator.SetFloat(_animatonKeys[_currentTypeAnimation], 0f);
         }
     }

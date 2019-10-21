@@ -7,30 +7,31 @@ namespace GameCore.StateMachine
     {
         void Work();
         void ChangeState(Type keyState);
+        Type GetTypeCurrentState();
     }
 
     public class StateMachine<T> : IStateMachine
         where T : class
     {
         public readonly T owner;
-        public State<T> currentState { get; private set; }
+        private State<T> _currentState;
         private readonly Dictionary<Type, State<T>> _allStates;
         
 
         public StateMachine(T owner, Func<object> func)
         {
             this.owner = owner;
-            currentState = null;
+            _currentState = null;
             _allStates = func?.Invoke() as Dictionary<Type,State<T>>;
             ChangeState(typeof(Idle));
         }
 
         public void ChangeState(Type keyState)
         {
-            if (keyState == currentState?.GetType()) return;
-            currentState?.ExitState();
-            currentState = _allStates[keyState];
-            currentState.EnterState();
+            if (keyState == _currentState?.GetType()) return;
+            _currentState?.ExitState();
+            _currentState = _allStates[keyState];
+            _currentState.EnterState();
         }
 
         public void Work()
@@ -40,8 +41,13 @@ namespace GameCore.StateMachine
 
         private void UpdateStatemachine()
         {
-            var stateType = currentState?.UpdateState();
-            if (stateType != null && stateType != currentState?.GetType()) ChangeState(stateType);
+            var stateType = _currentState?.UpdateState();
+            if (stateType != null && stateType != _currentState?.GetType()) ChangeState(stateType);
+        }
+
+        public Type GetTypeCurrentState()
+        {
+            return _currentState?.GetType();
         }
     }
 }

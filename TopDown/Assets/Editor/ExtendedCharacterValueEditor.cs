@@ -16,8 +16,6 @@ public class ExtendedCharacterValueEditor : Editor
         value.characterHealth = EditorGUILayout.IntSlider(_healtText, value.characterHealth, 0, 1000);
         value.characterEnergy = EditorGUILayout.IntSlider(_energyText, value.characterEnergy, 0, 1000);
 
-        value.characterStateType = (CharacterStateType)EditorGUILayout.EnumFlagsField(_energyText, value.characterStateType);
-
         //переделать!
         base.OnInspectorGUI();
     }

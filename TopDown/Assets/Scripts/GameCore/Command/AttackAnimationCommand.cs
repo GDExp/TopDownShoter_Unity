@@ -19,7 +19,7 @@ namespace GameCore
         public void Execute()
         {
             var argValue = 
-                new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue, stateType: CharacterStateType.Attack, attack: isAttack);
+                new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue, attack: isAttack);
             _receiver?.HandleCommand(argValue);
             _combatReceiver?.HandleCommand(argValue);
         }

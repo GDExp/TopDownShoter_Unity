@@ -1,7 +1,8 @@
 ﻿namespace GameCore.Strategy
 {
-    interface IStrategy
+    public interface IStrategy
     {
         void DoStrategy();
+        void EndStrategy();
     }
 }

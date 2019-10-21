@@ -1,6 +1,6 @@
 ﻿namespace GameCore.Strategy
 {
-    class StrategySwithcer
+    public class StrategySwithcer
     {
         private IStrategy _currentStrategy;
 
@@ -11,6 +11,7 @@
 
         public void SetStrategy(IStrategy newStrategy)
         {
+            if (_currentStrategy == newStrategy) return;
             _currentStrategy = newStrategy;
         }
 
