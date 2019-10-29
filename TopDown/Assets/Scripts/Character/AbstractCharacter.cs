@@ -30,6 +30,9 @@ namespace Character
         
         private Dictionary<Type, List<IObserver>> _observers;
 
+        //test visual
+        public int hp_test;
+
         private void Start()
         {
             GameCore.GameController.Instance.AddInCharacterInList(this);
@@ -69,6 +72,7 @@ namespace Character
         public void InvokeSetupCharacter()
         {
             SetupCharacter();
+            
         }
         //ICharacter
         public virtual void UpdateCharacter()

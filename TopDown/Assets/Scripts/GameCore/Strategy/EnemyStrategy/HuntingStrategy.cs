@@ -6,12 +6,10 @@ namespace GameCore.Strategy
 {
     class HuntingStrategy : BasicEnemyStategy
     {
-        private readonly Transform _player;
         private Vector3 _randomCirclePoint;
         
         public HuntingStrategy(AbstractCharacter owner, string status) : base(owner, status)
         {
-            _player = GameController.Instance.playerGO.transform;
         }
 
         public override void DoStrategy()
@@ -19,12 +17,12 @@ namespace GameCore.Strategy
             base.DoStrategy();
             if (statusController.isCombat) return;
             SetPlayerPosition();
-            stateMachine.Work();
         }
 
         private void SetPlayerPosition()
         {
-            navigationController.SetCurrentPoint(_player.position + _randomCirclePoint);
+            if (enemy.isSmart) navigationController.SetCurrentPoint(enemy.targetTransform.position + enemy.targetTransform.forward * enemy.targetSpeed / 2f);
+            else navigationController.SetCurrentPoint(enemy.targetTransform.position + _randomCirclePoint);
             if (statusController.isRetreat) statusController.isRetreat = false; 
             statusController.isHunting = true;
             stateMachine.ChangeState(typeof(Move));

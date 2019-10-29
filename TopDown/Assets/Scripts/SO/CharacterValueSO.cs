@@ -10,6 +10,7 @@ public class CharacterValueSO : ScriptableObject
     public int characterHealth;
     public int characterEnergy;
     public float characterReload;
+    public float characterSpeed;
     [Header("Animation Value")]
     public RuntimeAnimatorController animatorController;
     public Avatar animationAvatar;

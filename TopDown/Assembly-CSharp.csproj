@@ -61,12 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character\AbstractCharacter.cs" />
+    <Compile Include="Assets\Scripts\Character\Controllers\AnimationController.cs" />
+    <Compile Include="Assets\Scripts\Character\Controllers\CombatController.cs" />
+    <Compile Include="Assets\Scripts\Character\Controllers\NavigationController.cs" />
+    <Compile Include="Assets\Scripts\Character\Controllers\StatusController.cs" />
     <Compile Include="Assets\Scripts\Character\EnemyCharacter.cs" />
     <Compile Include="Assets\Scripts\Character\HitColliderLink.cs" />
-    <Compile Include="Assets\Scripts\Character\MO\AnimationController.cs" />
-    <Compile Include="Assets\Scripts\Character\MO\CombatController.cs" />
-    <Compile Include="Assets\Scripts\Character\MO\NavigatonController.cs" />
-    <Compile Include="Assets\Scripts\Character\MO\StatusController.cs" />
     <Compile Include="Assets\Scripts\Character\Observer\AnimationEventCallback.cs" />
     <Compile Include="Assets\Scripts\Character\Observer\IObserver.cs" />
     <Compile Include="Assets\Scripts\Character\Observer\ISubject.cs" />
@@ -81,15 +81,22 @@
     <Compile Include="Assets\Scripts\GameCore\Factory\BaseProduct.cs" />
     <Compile Include="Assets\Scripts\GameCore\Factory\ProductDefaultState.cs" />
     <Compile Include="Assets\Scripts\GameCore\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameCore\StateLogic\AbstractMovementLogic.cs" />
+    <Compile Include="Assets\Scripts\GameCore\StateLogic\EnemyMovementLogic.cs" />
+    <Compile Include="Assets\Scripts\GameCore\StateLogic\PlayerMovementLogic.cs" />
     <Compile Include="Assets\Scripts\GameCore\StateMachine\State.cs" />
     <Compile Include="Assets\Scripts\GameCore\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\GameCore\StateMachine\States\Attack.cs" />
     <Compile Include="Assets\Scripts\GameCore\StateMachine\States\Idle.cs" />
     <Compile Include="Assets\Scripts\GameCore\StateMachine\States\Move.cs" />
     <Compile Include="Assets\Scripts\GameCore\Strategy\BaseStrategy.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Strategy\CharacterStrategy\PlayerStrategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\AttackStrategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\BasicEnemyStategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\HuntingStrategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\IdleStrategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\RetreatStrategy.cs" />
+    <Compile Include="Assets\Scripts\GameCore\Strategy\EnemyStrategy\ReturnStrategy.cs" />
     <Compile Include="Assets\Scripts\GameCore\Strategy\IStrategy.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Strategy\StageStrategy\MovePlayerStrategy.cs" />
     <Compile Include="Assets\Scripts\GameCore\Strategy\StrategySwithcer.cs" />
     <Compile Include="Assets\Scripts\SO\CharacterValueExeption.cs" />
     <Compile Include="Assets\Scripts\SO\CharacterValueSO.cs" />

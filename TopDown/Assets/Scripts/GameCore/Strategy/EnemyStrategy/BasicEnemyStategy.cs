@@ -22,6 +22,7 @@ namespace GameCore.Strategy
 
         public override void DoStrategy()
         {
+            stateMachine.Work();
             if (Application.isEditor) ChangeEnemyStatus();
         }
 

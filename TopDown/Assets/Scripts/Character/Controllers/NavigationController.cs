@@ -49,5 +49,10 @@ namespace Character
         {
             return _agent.stoppingDistance + 0.5f;
         }
+
+        public void SetAgentSpeed(float speed)
+        {
+            _agent.speed = speed;
+        }
     }
 }

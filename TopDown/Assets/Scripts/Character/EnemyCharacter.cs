@@ -18,22 +18,31 @@ namespace Character
 
     class EnemyCharacter : AbstractCharacter
     {
-        public string enemyStatus;//visal strategy
-        public Transform playerPosition;//test
-        public float visionRadius;//test
-        [HideInInspector] public Vector3 startPosition;//test
+        [HideInInspector] public Vector3 startPosition { get; private set; }
+        public Transform targetTransform { get; private set; }
         private Dictionary<TypeConduct, IStrategy> enemyStrategy;
 
-        [SerializeField] private float distanceToPlayer;
-        public float attackDistance;
+        private float distanceToPlayer;
+        public float visionRadius;// to do setup in editor - prefab
+        [Range(0f,100f)]
+        public float brainWeight;// to do setup in editor - prafab
+        public float attackDistance;// to do setup in editor - prefab
+        public float targetSpeed { get; private set; }
+        public int healingPower;// to do setup in editor - prefab
+
+        public bool isSmart { get; private set; }
+        private bool isRetreatOnce;
 
         protected override void SetupCharacter()
         {
             isPlayMode = true;
             base.SetupCharacter();
             strSwither = new StrategySwithcer();
-            playerPosition = GameCore.GameController.Instance.playerGO.transform;//test
             startPosition = transform.localPosition;
+            isSmart = brainWeight >= Random.Range(45f, 75f);
+
+            targetTransform = GameCore.GameController.Instance.playerGO.transform;//test
+            navigationController.SetAgentSpeed(statusController.maxSpeed * 0.6f);//test
 
             SetupStrategy();
             StartCoroutine(CheckPlayerDistance());
@@ -41,49 +50,77 @@ namespace Character
 
         private void SetupStrategy()
         {
-            enemyStrategy = new Dictionary<TypeConduct, IStrategy>();
-            enemyStrategy.Add(TypeConduct.Idle, new IdleStrategy(this, TypeConduct.Idle.ToString()));
-            enemyStrategy.Add(TypeConduct.Hunting, new HuntingStrategy(this, TypeConduct.Hunting.ToString()));
-            enemyStrategy.Add(TypeConduct.Return, new ReturnStrategy(this, TypeConduct.Return.ToString()));
-            enemyStrategy.Add(TypeConduct.Attack, new AttackStrategy(this, TypeConduct.Attack.ToString()));
+            enemyStrategy = new Dictionary<TypeConduct, IStrategy>
+            {
+                { TypeConduct.Idle, new IdleStrategy(this, TypeConduct.Idle.ToString()) },
+                { TypeConduct.Hunting, new HuntingStrategy(this, TypeConduct.Hunting.ToString()) },
+                { TypeConduct.Return, new ReturnStrategy(this, TypeConduct.Return.ToString()) },
+                { TypeConduct.Attack, new AttackStrategy(this, TypeConduct.Attack.ToString()) },
+                { TypeConduct.Retreat, new RetreatStrategy(this, TypeConduct.Retreat.ToString()) },
+            };
+        }
+
+        private IEnumerator CheckPlayerDistance()
+        {
+            Vector3 lastPosition;
+            while (gameObject.activeInHierarchy)
+            {
+                distanceToPlayer = (transform.position - targetTransform.position).magnitude;
+                if (statusController.isHunting)
+                {
+                    lastPosition = targetTransform.position;
+                    yield return new WaitForEndOfFrame();
+                    targetSpeed = (targetTransform.position - lastPosition).magnitude / Time.deltaTime;
+                    targetSpeed = Mathf.RoundToInt(targetSpeed);
+                }
+                yield return new WaitForFixedUpdate();
+            }
         }
 
         public override void UpdateCharacter()
         {
             base.UpdateCharacter();
-            //контроль состояний и выбор стратегии огласно состоянию
-            if (distanceToPlayer <= visionRadius)
+            if (distanceToPlayer <= visionRadius && !statusController.isRetreat)
             {
-                if (distanceToPlayer <= navigationController.GetAgentStopDistance()) strSwither.SetStrategy(enemyStrategy[TypeConduct.Attack]);//to do add attack range
+                if (distanceToPlayer <= attackDistance) strSwither.SetStrategy(enemyStrategy[TypeConduct.Attack]);
                 else strSwither.SetStrategy(enemyStrategy[TypeConduct.Hunting]);
             }
             else
             {
                 if (!statusController.isRetreat) strSwither.SetStrategy(enemyStrategy[TypeConduct.Idle]);
+                else strSwither.SetStrategy(enemyStrategy[TypeConduct.Retreat]);
                 if (statusController.isHunting) strSwither.SetStrategy(enemyStrategy[TypeConduct.Return]);
+            }
+
+            if (statusController.ChechCurrentHealthToLimit(Mathf.RoundToInt(statusController.maxHealth * 0.2f))
+                && !isRetreatOnce
+                && isSmart)
+            {
+                strSwither.SetStrategy(enemyStrategy[TypeConduct.Retreat]);
+                isRetreatOnce = true;
+            }
+
+            //test Damage!!
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                statusController.TakeDamage(80);
+                statusController.RefreshHelth(ref hp_test);
             }
             strSwither.StrategyIsWork();
         }
 
-        private IEnumerator CheckPlayerDistance()
-        {
-            while (gameObject.activeInHierarchy)
-            {
-                distanceToPlayer = (transform.position - playerPosition.position).magnitude;
-                yield return new WaitForFixedUpdate();
-            }
-        }
-
         private bool ChangeStatusByDistance()
         {
-            distanceToPlayer = (transform.position - playerPosition.position).magnitude;
+            distanceToPlayer = (transform.position - targetTransform.position).magnitude;
             return distanceToPlayer < visionRadius;
         }
-        
+
 #if UNITY_EDITOR
+        // to do - вынос в отдельный класс
         // only editor visual
+        public string enemyStatus;//visal strategy
         private bool isPlayMode;
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere((isPlayMode) ? startPosition : transform.position, 1f);
@@ -93,6 +130,5 @@ namespace Character
             UnityEditor.Handles.Label(transform.position + Vector3.up * 7f, $"<color=yellow>{enemyStatus}</color>", style);
         }
 #endif
-
     }
 }
