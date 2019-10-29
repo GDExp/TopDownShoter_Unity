@@ -16,6 +16,7 @@ namespace Character
         Dead
     }
 
+    [AddComponentMenu("Characters/Enemy")]
     class EnemyCharacter : AbstractCharacter
     {
         [HideInInspector] public Vector3 startPosition { get; private set; }

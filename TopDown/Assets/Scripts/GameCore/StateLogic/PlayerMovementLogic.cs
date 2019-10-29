@@ -5,25 +5,39 @@ namespace GameCore.StateMachine
 {
     class PlayerMovementLogic : AbstractMovementLogic<AbstractCharacter>
     {
-        private Transform _characterTransform;
+        private readonly PlayerCharacter _player;
+        private readonly Transform _playerTransform;
+
         public PlayerMovementLogic(AbstractCharacter owner) : base(owner)
         {
-            _characterTransform = owner.transform;
+            _player = owner as PlayerCharacter;
+            _playerTransform = owner.transform;
+#if KEY_AND_MOUSE
+            _player.playerInput = new KeyAndMouseInputModule(_player);
+#endif
+#if ONLY_MOUSE
+            _player.playerInput = new OnlyMouseInputModule(_player);
+#endif
+            GameController.Instance.AddModuleInList(_player.playerInput);
         }
 
         protected override void InputCurrentPoint()
         {
-            float x = GameController.Instance.xValue;
-            float z = GameController.Instance.zValue;
+            Vector3 point = Vector3.zero;
 
-            Vector3 direction = Vector3.zero;
-
-            if (x != 0 || z != 0)
+            if (_player.playerInput.isMove)
             {
                 if (isStoped) isStoped = !navigationController.InteractObstacleComponent();
-                direction = new Vector3(x, 0f, z);
+                if (_player.playerInput.isJoystick)
+                {
+                    point = _playerTransform.position + _player.playerInput.movePoint * navigationController.GetAgentStopDistance();
+                }
+                else
+                {
+                    point = _player.playerInput.movePoint;
+                }
             }
-            navigationController?.SetCurrentPoint(_characterTransform.position + direction * navigationController.GetAgentStopDistance());
+            navigationController?.SetCurrentPoint(point);
         }
     }
 }

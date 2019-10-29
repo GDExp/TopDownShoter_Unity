@@ -4,9 +4,11 @@ using GameCore.StateMachine;
 
 namespace Character
 {
-    class PlayerCharacter: AbstractCharacter
+    [AddComponentMenu("Characters/Player")]
+    public class PlayerCharacter: AbstractCharacter
     {
-        public bool showHP;//test
+        public PlayerInputModule playerInput;
+        public float attackDistance;//??? EnemyCharacter
 
         protected override void SetupCharacter()
         {
@@ -16,14 +18,11 @@ namespace Character
         public override void UpdateCharacter()
         {
             base.UpdateCharacter();
-            stateMachine.Work();
-            if (showHP) statusController.RefreshHelth(ref hp_test);//test
             if (statusController.isCombat) return;
 
-            if (GameController.Instance.xValue != 0 || GameController.Instance.zValue != 0) stateMachine.ChangeState(typeof(Move));
+            if (playerInput.isMove) stateMachine.ChangeState(typeof(Move));
             else stateMachine.ChangeState(typeof(Idle));
-            if (GameController.Instance.attackKey && statusController.CheckReloadTime(Time.time)) stateMachine.ChangeState(typeof(Attack));
-            
+            if (playerInput.isAttack && statusController.CheckReloadTime(Time.time)) stateMachine.ChangeState(typeof(Attack));
         }
     }
 }
