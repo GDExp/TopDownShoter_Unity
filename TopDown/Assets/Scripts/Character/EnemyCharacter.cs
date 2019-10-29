@@ -16,6 +16,7 @@ namespace Character
         Dead
     }
 
+    [AddComponentMenu("Characters/Enemy")]
     class EnemyCharacter : AbstractCharacter
     {
         public string enemyStatus;//visal strategy
@@ -62,7 +63,6 @@ namespace Character
                 if (!statusController.isRetreat) strSwither.SetStrategy(enemyStrategy[TypeConduct.Idle]);
                 if (statusController.isHunting) strSwither.SetStrategy(enemyStrategy[TypeConduct.Return]);
             }
-            strSwither.StrategyIsWork();
         }
 
         private IEnumerator CheckPlayerDistance()

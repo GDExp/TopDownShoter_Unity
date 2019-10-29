@@ -8,15 +8,10 @@ namespace GameCore
     class GameController : MonoBehaviour
     {
         public static GameController Instance;
-
-        //input system modul
-        public float xValue;
-        public float zValue;
-        public bool attackKey;
-
+        
         public GameObject playerGO { get; private set; }
         private List<ICharacter> _allCharacterInScene;
-
+        private List<IUpdatableModule> _allUpdatableModule;
 
         private bool isGamePlay;
 
@@ -38,6 +33,7 @@ namespace GameCore
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
             _allCharacterInScene = new List<ICharacter>();
+            _allUpdatableModule = new List<IUpdatableModule>();
             isGamePlay = true;
         }
 
@@ -54,13 +50,7 @@ namespace GameCore
         {
             SetupCharactersInScene();
             StartCoroutine(OnUpdateCharacters());
-        }
-
-        private void Update()
-        {
-            xValue = Input.GetAxisRaw("Horizontal");
-            zValue = Input.GetAxisRaw("Vertical");
-            attackKey = Input.GetMouseButtonDown(0);
+            StartCoroutine(OnUpdateModules());
         }
 
         private void SetupCharactersInScene()
@@ -87,7 +77,16 @@ namespace GameCore
             }
         }
 
-        public void AddInCharacterInList(ICharacter character)
+        private IEnumerator OnUpdateModules()
+        {
+            while (isGamePlay)
+            {
+                for (int i = 0; i < _allUpdatableModule.Count; ++i) _allUpdatableModule[i].OnUpdate();
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void AddCharacterInList(ICharacter character)
         {
             CustomDebug.LogMessage($"Add character - {character}", DebugColor.green);
             if (_allCharacterInScene.Contains(character)) return;
@@ -99,6 +98,13 @@ namespace GameCore
             CustomDebug.LogMessage($"Remove character - {character}", DebugColor.red);
             if (!_allCharacterInScene.Contains(character)) return;
             _allCharacterInScene.Remove(character);
+        }
+
+        public void AddModuleInList(IUpdatableModule module)
+        {
+            CustomDebug.LogMessage($"Add module - {module}", DebugColor.orange);
+            if (_allUpdatableModule.Contains(module)) return;
+            _allUpdatableModule.Add(module);
         }
     }
 }

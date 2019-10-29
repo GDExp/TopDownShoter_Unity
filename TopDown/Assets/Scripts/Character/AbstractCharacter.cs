@@ -32,7 +32,7 @@ namespace Character
 
         private void Start()
         {
-            GameCore.GameController.Instance.AddInCharacterInList(this);
+            GameCore.GameController.Instance.AddCharacterInList(this);
         }
 
         private void OnDisable()
@@ -74,6 +74,7 @@ namespace Character
         public virtual void UpdateCharacter()
         {
             //do....
+            stateMachine.Work();
         }
 
         //ISubject
