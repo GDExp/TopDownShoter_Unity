@@ -13,6 +13,7 @@ namespace Character
         protected override void SetupCharacter()
         {
             base.SetupCharacter();
+            navigationController.SetAgentSpeed(statusController.maxSpeed);
         }
 
         public override void UpdateCharacter()

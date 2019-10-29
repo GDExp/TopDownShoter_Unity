@@ -528,7 +528,7 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
-    1: ONLY_MOUSE
+    1: KEY_AND_MOUSE
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
