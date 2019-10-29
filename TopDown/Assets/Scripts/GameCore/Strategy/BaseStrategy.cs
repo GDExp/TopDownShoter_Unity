@@ -18,10 +18,5 @@ namespace GameCore.Strategy
         {
 
         }
-        //it remove?s
-        public void EndStrategy()
-        {
-
-        }
     }
 }

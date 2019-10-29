@@ -12,27 +12,34 @@
 
     public class StatusController: ITakeDamage, ITakeHealing
     {
-        private int _maxHealth;
-        private int _maxEnergy;
+        public readonly int maxHealth;
+        public readonly int maxEnergy;
+        public readonly float maxSpeed;
+
         private int _currentHealth;
         private int _currentEnergy;
         
         private float _reloadValue;
         private float _reloadTime;
-                
-        public bool isCombat { get; set; }
-        public bool isHunting { get; set; }
-        public bool isRetreat { get; set; }
+        private float _healingPower;
+
+        public bool isRange;
+        public bool isCombat;
+        public bool isHunting;
+        public bool isRetreat;
 
 
         public StatusController(CharacterValueSO valueSO)
         {
-            _maxHealth = valueSO.characterHealth;
-            _maxEnergy = valueSO.characterEnergy;
-            _currentHealth = _maxHealth;
-            _currentEnergy = _maxEnergy;
+            maxHealth = valueSO.characterHealth;
+            maxEnergy = valueSO.characterEnergy;
+            maxSpeed = valueSO.characterSpeed;
+
+            _currentHealth = maxHealth;
+            _currentEnergy = maxEnergy;
 
             _reloadValue = valueSO.characterReload;
+
         }
 
         public void TakeDamage(int damage)
@@ -50,7 +57,7 @@
         public void TakeHeal(int heal)
         {
             var deltaHeal = _currentHealth + heal;
-            _currentHealth = (deltaHeal >= _maxHealth) ? _maxHealth : deltaHeal;
+            _currentHealth = (deltaHeal >= maxHealth) ? maxHealth : deltaHeal;
         }
 
         //test
@@ -68,6 +75,21 @@
         public bool CheckReloadTime(float time)
         {
             return time >= _reloadTime;
+        }
+
+        public bool CheckCurrentHealthIsMax()
+        {
+            return _currentHealth >= maxHealth;
+        }
+
+        public bool ChechCurrentHealthToLimit(int limit)
+        {
+            return _currentHealth <= limit;
+        }
+
+        public void RefreshHelth(ref int hp_visual)//test functions to visual
+        {
+            hp_visual = _currentHealth;
         }
     }
 }

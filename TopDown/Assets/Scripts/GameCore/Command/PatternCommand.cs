@@ -2,7 +2,7 @@
 
 namespace GameCore
 {
-    class PatternCommand<T>
+    class PatternCommand<T> : ICommand
         where T: class
     {
         protected readonly T _invoker;
@@ -15,6 +15,11 @@ namespace GameCore
             _invoker = invoker;
             _animationType = animationType;
             _animationValue = animationValue;
+        }
+
+        public virtual void Execute()
+        {
+
         }
     }
 }

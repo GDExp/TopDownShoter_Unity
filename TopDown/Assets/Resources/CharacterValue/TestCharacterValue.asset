@@ -15,5 +15,6 @@ MonoBehaviour:
   characterHealth: 100
   characterEnergy: 200
   characterReload: 2
+  characterSpeed: 10
   animatorController: {fileID: 9100000, guid: ad12d22ca0ecc1f4da3fdea3d94df450, type: 2}
   animationAvatar: {fileID: 9000000, guid: 0a17c626a0f772745803f06f21a3dfaf, type: 3}

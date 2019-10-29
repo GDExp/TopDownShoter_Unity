@@ -3,7 +3,7 @@ using Character;
 
 namespace GameCore
 {
-    class AttackAnimationCommand : PatternCommand<AbstractCharacter>, ICommand
+    class AttackAnimationCommand : PatternCommand<AbstractCharacter>
     {
         private readonly bool isAttack;
         private readonly IReceiver<AnimationValue<AbstractCharacter>> _combatReceiver;
@@ -16,7 +16,7 @@ namespace GameCore
             isAttack = attackStatus;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             var argValue = 
                 new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue, attack: isAttack);

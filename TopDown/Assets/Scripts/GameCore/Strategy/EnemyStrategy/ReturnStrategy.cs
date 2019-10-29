@@ -19,8 +19,6 @@ namespace GameCore.Strategy
             if(!statusController.isRetreat) StartMove();
             CheckDistanceToPoint();
             if(distance < navigationController.GetAgentStopDistance()) EndMove();
-
-            stateMachine.Work();
         }
         
         private void StartMove()
