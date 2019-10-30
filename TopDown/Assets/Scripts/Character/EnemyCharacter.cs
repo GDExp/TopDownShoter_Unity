@@ -44,6 +44,7 @@ namespace Character
 
             targetTransform = GameCore.GameController.Instance.playerGO.transform;//test
             navigationController.SetAgentSpeed(statusController.maxSpeed * 0.6f);//test
+            attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
 
             SetupStrategy();
             StartCoroutine(CheckPlayerDistance());
@@ -101,12 +102,6 @@ namespace Character
                 isRetreatOnce = true;
             }
 
-            //test Damage!!
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                statusController.TakeDamage(80);
-                statusController.RefreshHelth(ref hp_test);
-            }
             strSwither.StrategyIsWork();
         }
 

@@ -3,7 +3,7 @@ using Character;
 
 namespace GameCore
 {
-    class ChangeAnimationCommand : PatternCommand<AbstractCharacter>
+    class ChangeAnimationCommand : BaseAnimationCommand
     {
         public ChangeAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0) 
             : base(invoker, animationType, animationValue)

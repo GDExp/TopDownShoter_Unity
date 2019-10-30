@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.4226183, y: 0, z: 0, w: 0.9063078}
-  m_LocalPosition: {x: -1.8560371, y: 10, z: -6.379219}
+  m_LocalPosition: {x: -1.8560371, y: 15, z: -8.379219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1857928576}
   cameraEuler: {x: 50, y: 0, z: 0}
-  cameraOffset: {x: 0, y: 10, z: -8}
+  cameraOffset: {x: 0, y: 15, z: -10}
 --- !u!1 &628347541
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,28 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9135585213756844772, guid: 3ec76c4f2d514f14fb27f7c83a253929,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384407797197357479, guid: 3ec76c4f2d514f14fb27f7c83a253929,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384407797197357475, guid: 3ec76c4f2d514f14fb27f7c83a253929,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606231764261602446, guid: 3ec76c4f2d514f14fb27f7c83a253929,
+        type: 3}
+      propertyPath: attackDistance
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2028615891297336089, guid: 3ec76c4f2d514f14fb27f7c83a253929, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ec76c4f2d514f14fb27f7c83a253929, type: 3}
 --- !u!1001 &1085773131618344770
 PrefabInstance:
@@ -461,6 +482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Test Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902602218391968362, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5902602218391471690, guid: 80c86574061c7a3499f801eaf062e787,
         type: 3}
@@ -521,6 +547,36 @@ PrefabInstance:
         type: 3}
       propertyPath: brainWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676424176502746728, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844118590399563053, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844118590399563053, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844118590399563053, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844118590399563051, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: m_Radius
+      value: 4.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329372756417988047, guid: 80c86574061c7a3499f801eaf062e787,
+        type: 3}
+      propertyPath: attackDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c86574061c7a3499f801eaf062e787, type: 3}

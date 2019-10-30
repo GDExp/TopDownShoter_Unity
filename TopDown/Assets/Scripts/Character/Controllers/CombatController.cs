@@ -7,24 +7,48 @@ using Observer;
 
 namespace Character
 {
-    interface ICombatController
+    public enum AttackType
     {
-        void Attack();
+        Melee,
+        Range,
     }
 
-    class CombatController<T> : ICombatController, IReceiver<AnimationValue<AbstractCharacter>>, IObserver
+    class CombatController<T> : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
         where T : AbstractCharacter
     {
+        public readonly Transform attackPoint;
+
         private readonly T _owner;
+        private readonly Transform _transform;
+
+        public AttackType currentAttackType = AttackType.Melee;
+
+        private IAttackLogic _currentAttackLogic;
         private IStateMachine _stateMachine;
-        private GameObject testHit;//it remove
+        private Vector3 _attackPointOffset;
         private bool isAttacked;
 
-        public CombatController(T owner, GameObject ownerGO)
+        public CombatController(T owner)
         {
             _owner = owner;
-            testHit = ownerGO.GetComponentInChildren<HitColliderLink>().gameObject;
-            testHit.SetActive(!testHit.activeSelf);
+            _transform = owner.transform;
+
+            //test
+            var attackPoint = new GameObject("AttackPoint");
+            this.attackPoint = attackPoint.transform;
+            this.attackPoint.SetParent(_transform);
+            this.attackPoint.position = _transform.position + new Vector3(0f, 2f, 3f);
+        }
+
+        public void SetAttackLogic()
+        {
+            if (_owner is PlayerCharacter) _currentAttackLogic = new PlayerAttackLogic(_owner);
+            else _currentAttackLogic = new EnemyAttackLogic(_owner);
+        }
+
+        public void SetAttackType(AttackType type)
+        {
+            currentAttackType = type;
         }
 
         public void HandleCommand(AnimationValue<AbstractCharacter> value)
@@ -38,23 +62,21 @@ namespace Character
         {
             if (isAttacked)
             {
-                Attack();
+                AttackEvent();
             }
             else
             {
                 _owner.Unsubscribe(typeof(AnimationEventCallback), this);
-                testHit.SetActive(!testHit.activeSelf);
                 ToggleIsCombat();
                 if (_stateMachine is null) _stateMachine = _owner.GetStateMachine() as IStateMachine;
                 _stateMachine.ChangeState(typeof(Idle));
             }
         }
 
-        public void Attack()
+        public void AttackEvent()
         {
-            //to do переделать в каст коллизий с дальнейшей обработкой урона
-            testHit.SetActive(!testHit.activeSelf);
             isAttacked = !isAttacked;
+            _currentAttackLogic.Attack();
         }
 
         private void ToggleIsCombat()

@@ -14,6 +14,7 @@ namespace Character
         {
             base.SetupCharacter();
             navigationController.SetAgentSpeed(statusController.maxSpeed);
+            attackDistance = navigationController.GetAgentStopDistance();//if only melee attack type
         }
 
         public override void UpdateCharacter()

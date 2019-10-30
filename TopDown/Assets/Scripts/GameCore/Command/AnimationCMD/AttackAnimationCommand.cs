@@ -3,7 +3,7 @@ using Character;
 
 namespace GameCore
 {
-    class AttackAnimationCommand : PatternCommand<AbstractCharacter>
+    class AttackAnimationCommand : BaseAnimationCommand
     {
         private readonly bool isAttack;
         private readonly IReceiver<AnimationValue<AbstractCharacter>> _combatReceiver;

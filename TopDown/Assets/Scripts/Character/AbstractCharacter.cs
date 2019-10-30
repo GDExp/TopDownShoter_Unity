@@ -26,7 +26,7 @@ namespace Character
         protected StatusController statusController;
 
         private AnimationController _animationController;
-        private ICombatController _combatController;
+        private CombatController<AbstractCharacter> _combatController;
         
         private Dictionary<Type, List<IObserver>> _observers;
 
@@ -186,7 +186,8 @@ namespace Character
 
         private void SetupCombatController()
         {
-            _combatController = new CombatController<AbstractCharacter>(this, gameObject);
+            _combatController = new CombatController<AbstractCharacter>(this);
+            _combatController.SetAttackLogic();
         }
 
         private void CallAnimationEvent()

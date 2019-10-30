@@ -1,16 +1,8 @@
-﻿namespace Character
+﻿using GameCore;
+
+namespace Character
 {
-    public interface ITakeDamage
-    {
-        void TakeDamage(int damage);
-    }
-
-    public interface ITakeHealing
-    {
-        void TakeHeal(int heal);
-    }
-
-    public class StatusController: ITakeDamage, ITakeHealing
+    public class StatusController : IReceiver<DamageValue<AbstractCharacter>>
     {
         public readonly int maxHealth;
         public readonly int maxEnergy;
@@ -42,10 +34,11 @@
 
         }
 
-        public void TakeDamage(int damage)
+        public void HandleCommand(DamageValue<AbstractCharacter> value)
         {
-            var deltaDamage = _currentHealth - damage;
+            var deltaDamage = _currentHealth - value.damageValue;
             _currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
+            CustomDebug.LogMessage(_currentHealth, DebugColor.blue);
         }
 
         private int Dead()
@@ -58,13 +51,6 @@
         {
             var deltaHeal = _currentHealth + heal;
             _currentHealth = (deltaHeal >= maxHealth) ? maxHealth : deltaHeal;
-        }
-
-        //test
-        public void TestCallback()
-        {
-            CustomDebug.LogMessage(_currentHealth, DebugColor.green);
-            CustomDebug.LogMessage(_currentEnergy, DebugColor.orange);
         }
 
         public void SetReloadTime(float time)
