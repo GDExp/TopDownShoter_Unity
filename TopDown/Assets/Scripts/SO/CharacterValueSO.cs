@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameCore.StateMachine;
 
-[CreateAssetMenu(fileName = "CharacterValue", menuName ="Character/New Value", order = 100)]
+[CreateAssetMenu(fileName = "CharacterValue", menuName = "CustomSO/Character/New Value", order = 100)]
 public class CharacterValueSO : ScriptableObject
 {
     [Header("Status Value")]    
