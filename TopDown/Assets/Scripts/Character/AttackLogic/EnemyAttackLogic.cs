@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using GameCore;
 
 namespace Character
 {
@@ -15,7 +16,11 @@ namespace Character
         {
             if (combatController.currentAttackType == AttackType.Range) return;
             float hitDistance = (enemy.transform.position - enemy.targetTransform.position).magnitude;
-            if (hitDistance <= enemy.attackDistance) Debug.Log($"Hiting - {enemy.targetTransform}");
+            if (hitDistance <= enemy.attackDistance)
+            {
+                var attackCMD = new AttackDamageCommand(enemy.currentTarget, enemy, 25);// 25 - test
+                attackCMD.Execute();
+            }
         }
 
         protected override void RangeAttack()

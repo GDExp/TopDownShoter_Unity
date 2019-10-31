@@ -32,7 +32,8 @@ namespace GameCore.Strategy
         {
             if (Time.time < _timerHeal && !statusController.CheckCurrentHealthIsMax()) return;
             _timerHeal = Time.time + 5f;
-            statusController.TakeHeal(enemy.healingPower);
+            var healingCommand = new HealingCommand(enemy, enemy.healingPower);
+            healingCommand.Execute();
             statusController.RefreshHelth(ref enemy.hp_test);
         }
 

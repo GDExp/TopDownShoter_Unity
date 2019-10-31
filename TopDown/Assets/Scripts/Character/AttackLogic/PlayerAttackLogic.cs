@@ -24,7 +24,7 @@ namespace Character
                 if (attackResult[i].collider.CompareTag("Enemy"))
                 {
                     var enemy = attackResult[i].collider.GetComponent<EnemyCharacter>();
-                    ICommand attackCMD = new AttackDamageCommand(enemy, 25);//25 - test
+                    ICommand attackCMD = new AttackDamageCommand(enemy, player, 25);//25 - test
                     attackCMD.Execute();
                 }
             }

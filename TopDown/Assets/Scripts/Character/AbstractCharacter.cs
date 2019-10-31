@@ -194,5 +194,10 @@ namespace Character
         {
             Notify(typeof(AnimationEventCallback));
         }
+        //test - visual debug
+        public void TestHPrefresh()
+        {
+            statusController.RefreshHelth(ref hp_test);
+        }
     }
 }

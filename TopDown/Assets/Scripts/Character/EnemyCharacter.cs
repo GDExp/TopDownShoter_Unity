@@ -20,6 +20,7 @@ namespace Character
     class EnemyCharacter : AbstractCharacter
     {
         [HideInInspector] public Vector3 startPosition { get; private set; }
+        public AbstractCharacter currentTarget { get; private set; }
         public Transform targetTransform { get; private set; }
         private Dictionary<TypeConduct, IStrategy> enemyStrategy;
 
@@ -42,8 +43,10 @@ namespace Character
             startPosition = transform.localPosition;
             isSmart = brainWeight >= Random.Range(45f, 75f);
 
+            currentTarget = GameCore.GameController.Instance.playerGO.GetComponent<PlayerCharacter>();// test
             targetTransform = GameCore.GameController.Instance.playerGO.transform;//test
             navigationController.SetAgentSpeed(statusController.maxSpeed * 0.6f);//test
+
             attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
 
             SetupStrategy();

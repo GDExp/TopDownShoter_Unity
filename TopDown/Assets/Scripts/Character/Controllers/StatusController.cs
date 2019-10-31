@@ -2,7 +2,7 @@
 
 namespace Character
 {
-    public class StatusController : IReceiver<DamageValue<AbstractCharacter>>
+    public class StatusController : IReceiver<DamageValue<AbstractCharacter>>, IReceiver<HealingValue<AbstractCharacter>>
     {
         public readonly int maxHealth;
         public readonly int maxEnergy;
@@ -36,21 +36,21 @@ namespace Character
 
         public void HandleCommand(DamageValue<AbstractCharacter> value)
         {
+            if (isRetreat) isRetreat = false;
             var deltaDamage = _currentHealth - value.damageValue;
             _currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
-            CustomDebug.LogMessage(_currentHealth, DebugColor.blue);
+        }
+
+        public void HandleCommand(HealingValue<AbstractCharacter> value)
+        {
+            var deltaHealing = _currentHealth + value.healingValue;
+            _currentHealth = (deltaHealing >= maxHealth) ? maxHealth : deltaHealing;
         }
 
         private int Dead()
         {
             //TO DO - сделать смерть + анимацию
             return 0;
-        }
-
-        public void TakeHeal(int heal)
-        {
-            var deltaHeal = _currentHealth + heal;
-            _currentHealth = (deltaHeal >= maxHealth) ? maxHealth : deltaHeal;
         }
 
         public void SetReloadTime(float time)

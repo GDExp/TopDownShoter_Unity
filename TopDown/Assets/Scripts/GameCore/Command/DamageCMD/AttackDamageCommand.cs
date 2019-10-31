@@ -5,18 +5,20 @@ namespace GameCore
     class AttackDamageCommand : PatternCommand<AbstractCharacter>
     {
         private IReceiver<DamageValue<AbstractCharacter>> _receiver;
-        private int _damage;
+        private readonly DamageValue<AbstractCharacter> _damageValue;
 
-        public AttackDamageCommand(AbstractCharacter invoker, int damageValue ) : base(invoker)
+        public AttackDamageCommand(AbstractCharacter invoker, AbstractCharacter owner, int value ) : base(invoker)
         {
-            _receiver = invoker.GetStatusController() as StatusController;
-            _damage = damageValue;
+            _receiver = invoker?.GetStatusController() as StatusController;
+            _damageValue = new DamageValue<AbstractCharacter>(owner, value);
         }
 
         public override void Execute()
         {
-            var attackArg = new DamageValue<AbstractCharacter>(_invoker, _damage);
-            _receiver?.HandleCommand(attackArg);
+            _receiver?.HandleCommand(_damageValue);
+
+            //test
+            _invoker.TestHPrefresh();
         }
     }
 }

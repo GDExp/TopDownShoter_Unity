@@ -25,6 +25,7 @@ namespace GameCore.Strategy
         {
             Vector3 direction = (enemy.targetTransform.position + enemyTransform.position).normalized;
             _point = enemyTransform.position + direction * enemy.visionRadius * 1.5f;
+            Debug.Log(_point);
 
             navigationController.SetCurrentPoint(_point);
             navigationController.SetAgentSpeed(statusController.maxSpeed * 1.25f);
@@ -62,7 +63,8 @@ namespace GameCore.Strategy
             if (Time.time >= _healingTimer)
             {
                 _healingTimer = Time.time + 1.5f;
-                statusController.TakeHeal(enemy.healingPower);
+                var healingCommand = new HealingCommand(enemy, enemy.healingPower);
+                healingCommand.Execute();
                 statusController.RefreshHelth(ref enemy.hp_test);//test visual
             }
         }
