@@ -30,7 +30,7 @@ namespace GameCore.Strategy
         
         private void IdleHealing()
         {
-            if (Time.time < _timerHeal && !statusController.CheckCurrentHealthIsMax()) return;
+            if (Time.time < _timerHeal && !statusController.CheckCurrentHealthToLimit(HealthStatus.MaxHealth)) return;
             _timerHeal = Time.time + 5f;
             var healingCommand = new HealingCommand(enemy, enemy.healingPower);
             healingCommand.Execute();

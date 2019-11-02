@@ -14,18 +14,13 @@ namespace Character
 
         protected override void MeleeAttack()
         {
-            if (combatController.currentAttackType == AttackType.Range) return;
+            base.MeleeAttack();
             float hitDistance = (enemy.transform.position - enemy.targetTransform.position).magnitude;
             if (hitDistance <= enemy.attackDistance)
             {
                 var attackCMD = new AttackDamageCommand(enemy.currentTarget, enemy, 25);// 25 - test
                 attackCMD.Execute();
             }
-        }
-
-        protected override void RangeAttack()
-        {
-            //to do - do it...
         }
     }
 }

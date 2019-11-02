@@ -11,6 +11,7 @@ namespace GameCore
         
         public GameObject playerGO { get; private set; }
         private List<ICharacter> _allCharacterInScene;
+        private List<IProjectile> _allProjectileInScene;
         private List<IUpdatableModule> _allUpdatableModule;
 
         private bool isGamePlay;
@@ -33,6 +34,7 @@ namespace GameCore
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
             _allCharacterInScene = new List<ICharacter>();
+            _allProjectileInScene = new List<IProjectile>();
             _allUpdatableModule = new List<IUpdatableModule>();
             isGamePlay = true;
         }
@@ -50,6 +52,7 @@ namespace GameCore
         {
             SetupCharactersInScene();
             StartCoroutine(OnUpdateCharacters());
+            StartCoroutine(OnUpdateProjectiles());
             StartCoroutine(OnUpdateModules());
         }
 
@@ -77,6 +80,18 @@ namespace GameCore
             }
         }
 
+        private IEnumerator OnUpdateProjectiles()
+        {
+            while (isGamePlay)
+            {
+                for(int i = 0; i <_allProjectileInScene.Count; ++i)
+                {
+                    if (_allProjectileInScene[i].CheckLifeTime()) RemoveProjectileInList(_allProjectileInScene[i]);
+                }
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
         private IEnumerator OnUpdateModules()
         {
             while (isGamePlay)
@@ -93,11 +108,26 @@ namespace GameCore
             _allCharacterInScene.Add(character);
         }
 
-        public void RemoveinCharacterInList(ICharacter character)
+        public void RemoveCharacterInList(ICharacter character)
         {
             CustomDebug.LogMessage($"Remove character - {character}", DebugColor.red);
             if (!_allCharacterInScene.Contains(character)) return;
             _allCharacterInScene.Remove(character);
+        }
+
+        public void AddProjectileInList(IProjectile projectile)
+        {
+            CustomDebug.LogMessage($"Add projectile - {projectile}", DebugColor.green);
+            if (_allProjectileInScene.Contains(projectile)) return;
+            _allProjectileInScene.Add(projectile);
+        }
+
+        public void RemoveProjectileInList(IProjectile projectile)
+        {
+            CustomDebug.LogMessage($"Remove projectile - {projectile}", DebugColor.red);
+            if (!_allProjectileInScene.Contains(projectile)) return;
+            _allProjectileInScene.Remove(projectile);
+            projectile.DestroyProjectile();
         }
 
         public void AddModuleInList(IUpdatableModule module)

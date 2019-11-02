@@ -1,7 +1,7 @@
 ﻿
 namespace Character
 {
-    abstract class BaseAttackLogic<T> : IAttackLogic
+    class BaseAttackLogic<T> : IAttackLogic
         where T: AbstractCharacter
     {
         protected readonly CombatController<T> combatController;
@@ -17,7 +17,14 @@ namespace Character
             this.RangeAttack();
         }
 
-        protected abstract void MeleeAttack();
-        protected abstract void RangeAttack();
+        protected virtual void MeleeAttack()
+        {
+            if (combatController.currentAttackType == AttackType.Range) return;
+        }
+        protected virtual void RangeAttack()
+        {
+            if (combatController.currentAttackType == AttackType.Melee) return;
+            var projectile = combatController.CreateProjectile();
+        }
     }
 }

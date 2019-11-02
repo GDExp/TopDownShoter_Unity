@@ -47,8 +47,8 @@ namespace GameCore.Strategy
 
         private void RefreshRetreatStatus()
         {
-            if (!statusController.ChechCurrentHealthToLimit(Mathf.RoundToInt(statusController.maxHealth * 0.6f))) statusController.isRetreat = false;
-            if (statusController.ChechCurrentHealthToLimit(Mathf.RoundToInt(statusController.maxHealth * 0.8f))) return;
+            if (!statusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) statusController.isRetreat = false;
+            if (statusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) return;
             _point = Vector3.zero;
         }
 

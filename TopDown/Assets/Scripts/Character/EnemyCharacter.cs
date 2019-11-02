@@ -50,7 +50,7 @@ namespace Character
             attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
 
             SetupStrategy();
-            StartCoroutine(CheckPlayerDistance());
+            StartCoroutine(CheckTargetDistance());
         }
 
         private void SetupStrategy()
@@ -65,7 +65,7 @@ namespace Character
             };
         }
 
-        private IEnumerator CheckPlayerDistance()
+        private IEnumerator CheckTargetDistance()
         {
             Vector3 lastPosition;
             while (gameObject.activeInHierarchy)
@@ -97,7 +97,7 @@ namespace Character
                 if (statusController.isHunting) strSwither.SetStrategy(enemyStrategy[TypeConduct.Return]);
             }
 
-            if (statusController.ChechCurrentHealthToLimit(Mathf.RoundToInt(statusController.maxHealth * 0.2f))
+            if (statusController.CheckCurrentHealthToLimit(HealthStatus.LowHealth)
                 && !isRetreatOnce
                 && isSmart)
             {

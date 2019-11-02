@@ -2,6 +2,13 @@
 
 namespace Character
 {
+    public enum HealthStatus
+    {
+        MaxHealth,
+        MediumHealth,
+        LowHealth,
+    }
+
     public class StatusController : IReceiver<DamageValue<AbstractCharacter>>, IReceiver<HealingValue<AbstractCharacter>>
     {
         public readonly int maxHealth;
@@ -63,14 +70,24 @@ namespace Character
             return time >= _reloadTime;
         }
 
-        public bool CheckCurrentHealthIsMax()
+        public bool CheckCurrentHealthToLimit(HealthStatus limit)
         {
-            return _currentHealth >= maxHealth;
-        }
-
-        public bool ChechCurrentHealthToLimit(int limit)
-        {
-            return _currentHealth <= limit;
+            bool result = false;
+            switch (limit)
+            {
+                case (HealthStatus.MaxHealth):
+                    result = _currentHealth >= maxHealth;
+                    break;
+                case (HealthStatus.MediumHealth):
+                    result = _currentHealth <= maxHealth * 0.5f;
+                    break;
+                case (HealthStatus.LowHealth):
+                    result = _currentHealth <= maxHealth * 0.25f;
+                    break;
+                default:
+                    break;
+            }
+            return result;
         }
 
         public void RefreshHelth(ref int hp_visual)//test functions to visual

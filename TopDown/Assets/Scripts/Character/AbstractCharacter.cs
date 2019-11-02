@@ -19,6 +19,7 @@ namespace Character
     public class AbstractCharacter : MonoBehaviour, ICharacter, ISubject
     {
         public CharacterValueSO characterValue;
+        public BaseProjectile test_projectile;//test
 
         protected NavigationController navigationController;
         protected IStateMachine stateMachine;
@@ -40,7 +41,7 @@ namespace Character
 
         private void OnDisable()
         {
-            GameCore.GameController.Instance.RemoveinCharacterInList(this);
+            GameCore.GameController.Instance.RemoveCharacterInList(this);
         }
 
         public object GetStatusController()

@@ -17,7 +17,7 @@ namespace Character
 
         protected override void MeleeAttack()
         {
-            if (combatController.currentAttackType == AttackType.Range) return;
+            base.MeleeAttack();
             var attackResult = Physics.SphereCastAll(combatController.attackPoint.position, _attackRadius, combatController.attackPoint.forward);
             for (int i = 0; i < attackResult.Length; ++i)
             {
@@ -28,11 +28,6 @@ namespace Character
                     attackCMD.Execute();
                 }
             }
-        }
-
-        protected override void RangeAttack()
-        {
-            //to do - do it...
         }
     }
 }
