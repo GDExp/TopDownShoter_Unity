@@ -7,23 +7,23 @@ namespace GameCore
     class ObjecCreator : ICreator
     {
         //to do настройка через псевдо-конфиг
-        private Dictionary<Type, object> _objectLibrary;
+        private Dictionary<Type, GameObject> _objectLibrary;
 
         public ObjecCreator()
         {
-            _objectLibrary = new Dictionary<Type, object>();
-            //test
+            _objectLibrary = new Dictionary<Type, GameObject>();
+
+            //to do  - remove late?
             var psevdoConfig = Resources.Load<PrefabsLibrary>("PrefabsLibrary");
             psevdoConfig.GetConfigLibrary(_objectLibrary);
         }
 
-        public object CreatePoolObject(Type objectType)
+        public IPoolableObject CreatePoolObject(Type objectType)
         {
-            object currentObject = null;
-            Debug.Log("Create!");
-            if (CheckExeptionInLibrary(objectType)) currentObject = UnityEngine.Object.Instantiate(_objectLibrary[objectType] as GameObject);
+            GameObject currentObject = null;
+            if (CheckExeptionInLibrary(objectType)) currentObject = UnityEngine.Object.Instantiate(_objectLibrary[objectType]);
 
-            return currentObject;
+            return currentObject.GetComponent<IPoolableObject>();
         }
 
         private bool CheckExeptionInLibrary(Type type)

@@ -33,4 +33,19 @@ class PlayerSettingTools
         PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.WebGL, _currentInputType);
 #endif
     }
+
+    #region CustomDebug
+
+    [MenuItem("Setup Settings/Custom Debug/On Show")]
+    private static void OnShowCustomDebugLog()
+    {
+        CustomDebug.isShowLog = true;
+    }
+    [MenuItem("Setup Settings/Custom Debug/Off Show")]
+    private static void OffShowCustomDebugLog()
+    {
+        CustomDebug.isShowLog = false;
+    }
+
+    #endregion
 }

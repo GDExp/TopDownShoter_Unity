@@ -1,6 +1,3 @@
-﻿using UnityEngine;
-
-class TestProjectile : BaseProjectile
+﻿public class TestProjectile : BaseProjectile
 {
-
 }

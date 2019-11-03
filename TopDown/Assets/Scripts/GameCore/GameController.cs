@@ -10,7 +10,8 @@ namespace GameCore
         public static GameController Instance;
         
         public GameObject playerGO { get; private set; }
-        public GameObjectPool objectPool { get; private set; }
+        public GameObjectPool objectsPool { get; private set; }
+        public ProjectileConvert projectileConvert;//test
         private List<ICharacter> _allCharacterInScene;
         private List<IProjectile> _allProjectileInScene;
         private List<IUpdatableModule> _allUpdatableModule;
@@ -35,16 +36,14 @@ namespace GameCore
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
 
-            objectPool = new GameObjectPool();
+            objectsPool = new GameObjectPool();
+            projectileConvert = new ProjectileConvert();
 
-            //test - pool
-            var tester = new GameObject("POOL_TESTER");
-            tester.AddComponent<PoolTest>();
-            //end test
-
+            //TO DO split to modules!
             _allCharacterInScene = new List<ICharacter>();
             _allProjectileInScene = new List<IProjectile>();
             _allUpdatableModule = new List<IUpdatableModule>();
+
             isGamePlay = true;
         }
 

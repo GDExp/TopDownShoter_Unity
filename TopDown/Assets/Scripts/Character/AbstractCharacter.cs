@@ -9,17 +9,12 @@ using Observer;
 
 namespace Character
 {
-    public interface ICharacter
-    {
-        void InvokeSetupCharacter();
-        void UpdateCharacter();
-    }
-
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
     public class AbstractCharacter : MonoBehaviour, ICharacter, ISubject
     {
         public CharacterValueSO characterValue;
-        public BaseProjectile test_projectile;//test
+        public AttackType currentAttackType;//test - visual setup pool
+        public ProjectileType currentProjectileType;//test - visual
 
         protected NavigationController navigationController;
         protected IStateMachine stateMachine;
@@ -42,6 +37,15 @@ namespace Character
         private void OnDisable()
         {
             GameCore.GameController.Instance.RemoveCharacterInList(this);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Projectile"))
+            {
+                var projectile = other.GetComponent<IProjectile>();
+                projectile.TakeDamage(this);
+            }
         }
 
         public object GetStatusController()
@@ -195,6 +199,7 @@ namespace Character
         {
             Notify(typeof(AnimationEventCallback));
         }
+
         //test - visual debug
         public void TestHPrefresh()
         {

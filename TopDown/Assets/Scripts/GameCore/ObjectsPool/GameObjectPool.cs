@@ -13,9 +13,9 @@ namespace GameCore
             _creator = new ObjecCreator();
         }
 
-        public object ProvideObject(Type objectType)
+        public IPoolableObject ProvideObject(Type objectType)
         {
-            object currentobject = null;
+            IPoolableObject currentobject = null;
 
             if (_storage.CheckObjectInStorage(objectType)) currentobject = _storage.GetObjectInStorage(objectType);
             else currentobject = _creator.CreatePoolObject(objectType);
@@ -23,7 +23,7 @@ namespace GameCore
             return currentobject;
         }
 
-        public void ReturnObject(object currentObject)
+        public void ReturnObject(IPoolableObject currentObject)
         {
             _storage.SetObjectInStorage(currentObject);
         }

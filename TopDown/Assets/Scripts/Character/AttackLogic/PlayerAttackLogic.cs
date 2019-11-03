@@ -18,7 +18,7 @@ namespace Character
         protected override void MeleeAttack()
         {
             base.MeleeAttack();
-            var attackResult = Physics.SphereCastAll(combatController.attackPoint.position, _attackRadius, combatController.attackPoint.forward);
+            var attackResult = Physics.SphereCastAll(combatController.attackPoint.position, _attackRadius, combatController.attackPoint.forward, 1f);
             for (int i = 0; i < attackResult.Length; ++i)
             {
                 if (attackResult[i].collider.CompareTag("Enemy"))

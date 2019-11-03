@@ -40,9 +40,8 @@ namespace Character
             this.attackPoint = attackPoint.transform;
             this.attackPoint.SetParent(_transform);
             this.attackPoint.position = _transform.position + new Vector3(0f, 2f, 3f);
-            currentProjectile = owner.test_projectile;
-            currentAttackType = AttackType.Range;
-            rangePower = 25f;
+            currentAttackType = owner.currentAttackType;//test
+            rangePower = 25f;//test
         }
 
         public void SetAttackLogic()
@@ -54,13 +53,6 @@ namespace Character
         public void SetAttackType(AttackType type)
         {
             currentAttackType = type;
-        }
-
-        public BaseProjectile CreateProjectile()
-        {
-            var projectile = GameObject.Instantiate(currentProjectile, attackPoint.position, attackPoint.rotation);
-            projectile.AddProjectileForce(rangePower);
-            return null;
         }
 
         public void HandleCommand(AnimationValue<AbstractCharacter> value)

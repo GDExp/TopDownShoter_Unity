@@ -4,6 +4,6 @@ namespace GameCore
 {
     interface ICreator
     {
-        object CreatePoolObject(Type objectType);
+        IPoolableObject CreatePoolObject(Type objectType);
     }
 }
