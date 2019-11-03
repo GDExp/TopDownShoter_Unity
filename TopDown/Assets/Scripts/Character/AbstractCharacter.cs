@@ -31,12 +31,12 @@ namespace Character
 
         private void Start()
         {
-            GameCore.GameController.Instance.AddCharacterInList(this);
+            GameCore.GameController.Instance.characterModule.AddElementinList(this);
         }
 
         private void OnDisable()
         {
-            GameCore.GameController.Instance.RemoveCharacterInList(this);
+            GameCore.GameController.Instance.characterModule.RemoveElementInList(this);
         }
 
         private void OnTriggerEnter(Collider other)
