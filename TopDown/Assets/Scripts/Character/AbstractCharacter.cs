@@ -10,6 +10,8 @@ using Observer;
 namespace Character
 {
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+    [RequireComponent(typeof(UnityEngine.AI.NavMeshObstacle))]
+    [RequireComponent(typeof(CharacterController))]
     public class AbstractCharacter : MonoBehaviour, ICharacter, ISubject
     {
         public CharacterValueSO characterValue;
@@ -145,7 +147,7 @@ namespace Character
 
         private void SetupStatusController()
         {
-            statusController = new StatusController(characterValue);
+            statusController = new StatusController(characterValue, CharacterDead);
         }
 
         private void SetupAnimationController()
@@ -198,6 +200,11 @@ namespace Character
         private void CallAnimationEvent()
         {
             Notify(typeof(AnimationEventCallback));
+        }
+
+        protected virtual void CharacterDead()
+        {
+            stateMachine.ChangeState(typeof(Dead));
         }
 
         //test - visual debug

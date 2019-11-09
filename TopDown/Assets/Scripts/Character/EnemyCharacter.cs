@@ -32,11 +32,13 @@ namespace Character
         public float targetSpeed { get; private set; }
         public int healingPower;// to do setup in editor - prefab
 
+        public bool isDead { get; private set; }
         public bool isSmart { get; private set; }
         private bool isRetreatOnce;
 
         protected override void SetupCharacter()
         {
+            tag = "Enemy";
             isPlayMode = true;
             base.SetupCharacter();
             strSwither = new StrategySwithcer();
@@ -85,6 +87,7 @@ namespace Character
         public override void UpdateCharacter()
         {
             base.UpdateCharacter();
+            if (isDead) return;
             if (distanceToPlayer <= visionRadius && !statusController.isRetreat)
             {
                 if (distanceToPlayer <= attackDistance) strSwither.SetStrategy(enemyStrategy[TypeConduct.Attack]);
@@ -112,6 +115,12 @@ namespace Character
         {
             distanceToPlayer = (transform.position - targetTransform.position).magnitude;
             return distanceToPlayer < visionRadius;
+        }
+
+        protected override void CharacterDead()
+        {
+            isDead = true;
+            base.CharacterDead();
         }
 
 #if UNITY_EDITOR

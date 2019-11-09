@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Character
@@ -18,8 +17,18 @@ namespace Character
 
         public NavigationController( AbstractCharacter character)
         {
+            var characterComponent = character.GetComponent<CharacterController>();
+
             _agent = character.GetComponent<NavMeshAgent>();
+            _agent.radius = characterComponent.radius;
+            _agent.height = characterComponent.height;
+
             _obstacle = character.GetComponent<NavMeshObstacle>();
+            _obstacle.carving = true;
+            _obstacle.carveOnlyStationary = false;
+            _obstacle.shape = NavMeshObstacleShape.Capsule;
+            _obstacle.radius = characterComponent.radius;
+            _obstacle.height = characterComponent.height;
             _obstacle.enabled = false;
         }
 

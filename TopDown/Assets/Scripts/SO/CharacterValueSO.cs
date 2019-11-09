@@ -6,16 +6,19 @@ using GameCore.StateMachine;
 [CreateAssetMenu(fileName = "CharacterValue", menuName = "CustomSO/Character/New Value", order = 100)]
 public class CharacterValueSO : ScriptableObject
 {
-    [Header("Status Value")]    
-    public int characterHealth;
-    public int characterEnergy;
-    public float characterReload;
-    public float characterSpeed;
     [Header("Animation Value")]
     public RuntimeAnimatorController animatorController;
     public Avatar animationAvatar;
     private Dictionary<Type, string> animatorKey;
-   
+
+    [Header("Status Value")]
+    public int characterHealth;
+    public int characterEnergy;
+    public float characterReload;
+    public float characterSpeed;
+
+    public bool isCheat;//test
+
     public (RuntimeAnimatorController, Avatar) GetAnimationValue()
     {
         return (animatorController, animationAvatar);
@@ -34,9 +37,7 @@ public class CharacterValueSO : ScriptableObject
             { typeof(Idle), "IdleValue" },
             { typeof(Move), "MoveValue" },
             { typeof(Attack), "AttackValue" },
-            //TO DO доделать!
-            //{ typeof(Hit),"HitValue" },
-            //{ typeof(Dead),"DeadValue" },
+            { typeof(Dead), "DeadValue" },
         };
     }
 }

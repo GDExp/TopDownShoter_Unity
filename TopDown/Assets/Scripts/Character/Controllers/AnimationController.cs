@@ -10,6 +10,7 @@ namespace Character
     class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
     {
         private const string AttackTrigger = "Attack";
+        private const string DeadTrigger = "Dead";
 
         private readonly Dictionary<Type, string> _animatonKeys;
         private Animator _animator;
@@ -32,6 +33,7 @@ namespace Character
                 _animator.SetTrigger(AttackTrigger);//???
                 _isAttackEvent = true;
             }
+            if (inputValue.isDead) _animator.SetTrigger(DeadTrigger);
         }
 
         public void UpdateObserver(Type subjectTypeCallback)

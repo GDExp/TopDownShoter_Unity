@@ -1,4 +1,5 @@
-﻿using GameCore;
+﻿using System;
+using GameCore;
 
 namespace Character
 {
@@ -11,6 +12,8 @@ namespace Character
 
     public class StatusController : IReceiver<DamageValue<AbstractCharacter>>, IReceiver<HealingValue<AbstractCharacter>>
     {
+        private event Action _deadAction;
+
         public readonly int maxHealth;
         public readonly int maxEnergy;
         public readonly float maxSpeed;
@@ -27,9 +30,14 @@ namespace Character
         public bool isHunting;
         public bool isRetreat;
 
+        //test
+        public bool isChaet;
 
-        public StatusController(CharacterValueSO valueSO)
+
+        public StatusController(CharacterValueSO valueSO, Action deadAction)
         {
+            _deadAction += deadAction;
+
             maxHealth = valueSO.characterHealth;
             maxEnergy = valueSO.characterEnergy;
             maxSpeed = valueSO.characterSpeed;
@@ -39,13 +47,18 @@ namespace Character
 
             _reloadValue = valueSO.characterReload;
 
+
+            //test
+            isChaet = valueSO.isCheat;
         }
 
         public void HandleCommand(DamageValue<AbstractCharacter> value)
         {
+            if (isChaet) return;
             if (isRetreat) isRetreat = false;
             var deltaDamage = _currentHealth - value.damageValue;
             _currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
+            CustomDebug.LogMessage(_currentHealth);
         }
 
         public void HandleCommand(HealingValue<AbstractCharacter> value)
@@ -56,7 +69,10 @@ namespace Character
 
         private int Dead()
         {
-            //TO DO - сделать смерть + анимацию
+            isCombat = false;
+            isRetreat = false;
+            isHunting = false;
+            _deadAction?.Invoke();
             return 0;
         }
 

@@ -3,14 +3,18 @@
 [ExecuteInEditMode]
 class CameraController : MonoBehaviour
 {
-    private Transform _camera;
+    private const float MinCameraValue = 0f;
+    private const float MaxCameraValue = 50f;
+
+    private Camera _camera;
     [SerializeField] private Transform target;
     public Vector3 cameraEuler;
     public Vector3 cameraOffset;
-
+    
     private void Start()
     {
-        _camera = transform;
+        if (target == null) target = FindObjectOfType<Character.PlayerCharacter>().transform;
+        _camera = GetComponent<Camera>();
     }
 
     private void LateUpdate()
@@ -21,7 +25,7 @@ class CameraController : MonoBehaviour
     private void LookAtTarget()
     {
         if (target is null) return;
-        _camera.localRotation = Quaternion.Euler(cameraEuler);
-        _camera.localPosition = target.localPosition + cameraOffset;
+        _camera.transform.localRotation = Quaternion.Euler(cameraEuler);
+        _camera.transform.localPosition = target.localPosition + cameraOffset;
     }
 }

@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: fb2ed2ae7bd15a54db65a6c49fce09aa
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arm_1.L
+    100002: Arm_1.R
+    100004: Arm_2.L
+    100006: Arm_2.R
+    100008: B_Finger_1.L
+    100010: B_Finger_1.R
+    100012: B_Finger_2.L
+    100014: B_Finger_2.L_end
+    100016: B_Finger_2.R
+    100018: B_Finger_2.R_end
+    100020: //RootNode
+    100022: Finger.L
+    100024: Finger.L.001
+    100026: Finger.L.002
+    100028: Finger.L.002_end
+    100030: Finger.L.003
+    100032: Finger.L.004
+    100034: Finger.L.005
+    100036: Finger.L.005_end
+    100038: Finger.L.006
+    100040: Finger.L.007
+    100042: Finger.L.008
+    100044: Finger.L.008_end
+    100046: Finger.L.009
+    100048: Finger.L.010
+    100050: Finger.L.011
+    100052: Finger.L.011_end
+    100054: Finger.L.020
+    100056: Finger.L.020_end
+    100058: Finger.R.012
+    100060: Finger.R.013
+    100062: Finger.R.014
+    100064: Finger.R.014_end
+    100066: Finger.R.015
+    100068: Finger.R.016
+    100070: Finger.R.017
+    100072: Finger.R.017_end
+    100074: Finger.R.018
+    100076: Finger.R.019
+    100078: Finger.R.021
+    100080: Finger.R.022
+    100082: Finger.R.023
+    100084: Finger.R.023_end
+    100086: Foot_1.L
+    100088: Foot_1.R
+    100090: Foot_2.L
+    100092: Foot_2.L_end
+    100094: Foot_2.R
+    100096: Foot_2.R_end
+    100098: Foot_rool_1.L
+    100100: Foot_rool_1.R
+    100102: Foot_rool_2.L
+    100104: Foot_rool_2.L_end
+    100106: Foot_rool_2.R
+    100108: Foot_rool_2.R_end
+    100110: Hand.L
+    100112: Hand.R
+    100114: Head
+    100116: Head_end
+    100118: IK_Arm.L
+    100120: IK_Arm.R
+    100122: IK_Finger_1.L
+    100124: IK_Finger_1.L_end
+    100126: IK_Finger_1.R.001
+    100128: IK_Finger_1.R.001_end
+    100130: IK_Finger_2.L
+    100132: IK_Finger_2.L_end
+    100134: IK_Finger_2.R.001
+    100136: IK_Finger_2.R.001_end
+    100138: IK_Finger_3.L
+    100140: IK_Finger_3.L_end
+    100142: IK_Finger_3.R.001
+    100144: IK_Finger_3.R.001_end
+    100146: IK_Finger_4.L
+    100148: IK_Finger_4.L_end
+    100150: IK_Finger_4.R.001
+    100152: IK_Finger_4.R.001_end
+    100154: IK_Leg.L
+    100156: IK_Leg.R
+    100158: IK_Spine
+    100160: Leg-1.L
+    100162: Leg-1.R
+    100164: Leg-2.L
+    100166: Leg-2.L_end
+    100168: Leg-2.R
+    100170: Leg-2.R_end
+    100172: LookAt
+    100174: LookAt_end
+    100176: Pole_Arm.L
+    100178: Pole_Arm.L_end
+    100180: Pole_Arm.R
+    100182: Pole_Arm.R_end
+    100184: Pole_Foot.L
+    100186: Pole_Foot.R
+    100188: Pole_Leg.L
+    100190: Pole_Leg.L_end
+    100192: Pole_Leg.R.001
+    100194: Pole_Leg.R.001_end
+    100196: Root Bone
+    100198: Spine_1
+    100200: Spine_2
+    100202: Spine_3
+    100204: Spine_4
+    100206: TorsPosition
+    100208: WeaponPoint.L
+    100210: WeaponPoint.L_end
+    100212: WeaponPoint.R
+    100214: WeaponPoint.R_end
+    100216: Humanoid Mesh
+    100218: Humanoid Rig
+    400000: Arm_1.L
+    400002: Arm_1.R
+    400004: Arm_2.L
+    400006: Arm_2.R
+    400008: B_Finger_1.L
+    400010: B_Finger_1.R
+    400012: B_Finger_2.L
+    400014: B_Finger_2.L_end
+    400016: B_Finger_2.R
+    400018: B_Finger_2.R_end
+    400020: //RootNode
+    400022: Finger.L
+    400024: Finger.L.001
+    400026: Finger.L.002
+    400028: Finger.L.002_end
+    400030: Finger.L.003
+    400032: Finger.L.004
+    400034: Finger.L.005
+    400036: Finger.L.005_end
+    400038: Finger.L.006
+    400040: Finger.L.007
+    400042: Finger.L.008
+    400044: Finger.L.008_end
+    400046: Finger.L.009
+    400048: Finger.L.010
+    400050: Finger.L.011
+    400052: Finger.L.011_end
+    400054: Finger.L.020
+    400056: Finger.L.020_end
+    400058: Finger.R.012
+    400060: Finger.R.013
+    400062: Finger.R.014
+    400064: Finger.R.014_end
+    400066: Finger.R.015
+    400068: Finger.R.016
+    400070: Finger.R.017
+    400072: Finger.R.017_end
+    400074: Finger.R.018
+    400076: Finger.R.019
+    400078: Finger.R.021
+    400080: Finger.R.022
+    400082: Finger.R.023
+    400084: Finger.R.023_end
+    400086: Foot_1.L
+    400088: Foot_1.R
+    400090: Foot_2.L
+    400092: Foot_2.L_end
+    400094: Foot_2.R
+    400096: Foot_2.R_end
+    400098: Foot_rool_1.L
+    400100: Foot_rool_1.R
+    400102: Foot_rool_2.L
+    400104: Foot_rool_2.L_end
+    400106: Foot_rool_2.R
+    400108: Foot_rool_2.R_end
+    400110: Hand.L
+    400112: Hand.R
+    400114: Head
+    400116: Head_end
+    400118: IK_Arm.L
+    400120: IK_Arm.R
+    400122: IK_Finger_1.L
+    400124: IK_Finger_1.L_end
+    400126: IK_Finger_1.R.001
+    400128: IK_Finger_1.R.001_end
+    400130: IK_Finger_2.L
+    400132: IK_Finger_2.L_end
+    400134: IK_Finger_2.R.001
+    400136: IK_Finger_2.R.001_end
+    400138: IK_Finger_3.L
+    400140: IK_Finger_3.L_end
+    400142: IK_Finger_3.R.001
+    400144: IK_Finger_3.R.001_end
+    400146: IK_Finger_4.L
+    400148: IK_Finger_4.L_end
+    400150: IK_Finger_4.R.001
+    400152: IK_Finger_4.R.001_end
+    400154: IK_Leg.L
+    400156: IK_Leg.R
+    400158: IK_Spine
+    400160: Leg-1.L
+    400162: Leg-1.R
+    400164: Leg-2.L
+    400166: Leg-2.L_end
+    400168: Leg-2.R
+    400170: Leg-2.R_end
+    400172: LookAt
+    400174: LookAt_end
+    400176: Pole_Arm.L
+    400178: Pole_Arm.L_end
+    400180: Pole_Arm.R
+    400182: Pole_Arm.R_end
+    400184: Pole_Foot.L
+    400186: Pole_Foot.R
+    400188: Pole_Leg.L
+    400190: Pole_Leg.L_end
+    400192: Pole_Leg.R.001
+    400194: Pole_Leg.R.001_end
+    400196: Root Bone
+    400198: Spine_1
+    400200: Spine_2
+    400202: Spine_3
+    400204: Spine_4
+    400206: TorsPosition
+    400208: WeaponPoint.L
+    400210: WeaponPoint.L_end
+    400212: WeaponPoint.R
+    400214: WeaponPoint.R_end
+    400216: Humanoid Mesh
+    400218: Humanoid Rig
+    2100000: No Name
+    4300000: Humanoid Mesh
+    7400000: Humanoid Rig|Attack_Melee_1
+    7400002: Humanoid Rig|Attack_Melee_2
+    7400004: Humanoid Rig|Attack_MH_Range
+    7400006: Humanoid Rig|Attack_SH_Pistol
+    7400008: Humanoid Rig|Dead_1
+    7400010: Humanoid Rig|Idle_OH_Weapon_0
+    7400012: Humanoid Rig|Idle_OH_Weapon_1
+    7400014: Humanoid Rig|Idle_OH_Weapon_3
+    7400016: Humanoid Rig|Move_OH_Weapon_Fast_OH_Melee
+    7400018: Humanoid Rig|Move_OH_Weapon_Fast_Pistol
+    7400020: Humanoid Rig|Move_OH_Weapon_Slow
+    7400022: Humanoid Rig|T-pose
+    9500000: //RootNode
+    13700000: Humanoid Mesh
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Humanoid Rig|Attack_Melee_1
+      takeName: Humanoid Rig|Attack_Melee_1
+      firstFrame: 0
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Attack_Melee_2
+      takeName: Humanoid Rig|Attack_Melee_2
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Attack_MH_Range
+      takeName: Humanoid Rig|Attack_MH_Range
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Attack_SH_Pistol
+      takeName: Humanoid Rig|Attack_SH_Pistol
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Dead_1
+      takeName: Humanoid Rig|Dead_1
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Idle_OH_Weapon_0
+      takeName: Humanoid Rig|Idle_OH_Weapon_0
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Idle_OH_Weapon_1
+      takeName: Humanoid Rig|Idle_OH_Weapon_1
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Idle_OH_Weapon_3
+      takeName: Humanoid Rig|Idle_OH_Weapon_3
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Move_OH_Weapon_Fast_OH_Melee
+      takeName: Humanoid Rig|Move_OH_Weapon_Fast_OH_Melee
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Move_OH_Weapon_Fast_Pistol
+      takeName: Humanoid Rig|Move_OH_Weapon_Fast_Pistol
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|Move_OH_Weapon_Slow
+      takeName: Humanoid Rig|Move_OH_Weapon_Slow
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Humanoid Rig|T-pose
+      takeName: Humanoid Rig|T-pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
