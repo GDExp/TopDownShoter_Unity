@@ -2,7 +2,7 @@
 
 namespace GameCore
 {
-    struct AnimationValue<T>
+    readonly struct AnimationValue<T>
     {
         public readonly T owner;
         public readonly Type animationType;

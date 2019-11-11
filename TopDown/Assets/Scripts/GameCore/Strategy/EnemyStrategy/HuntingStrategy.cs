@@ -15,6 +15,11 @@ namespace GameCore.Strategy
         public override void DoStrategy()
         {
             base.DoStrategy();
+            if (!statusController.isHunting)
+            {
+                ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.RunSpeed);
+                speedCMD.Execute();
+            }
             if (statusController.isCombat) return;
             SetPlayerPosition();
         }

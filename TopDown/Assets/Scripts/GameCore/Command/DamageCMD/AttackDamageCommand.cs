@@ -16,9 +16,6 @@ namespace GameCore
         public override void Execute()
         {
             _receiver?.HandleCommand(_damageValue);
-
-            //test
-            _invoker.TestHPrefresh();
         }
     }
 }

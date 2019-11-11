@@ -7,8 +7,9 @@ using Observer;
 namespace Character
 {
 
-    class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
+    class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IReceiver<AnimationSpeedValue<AbstractCharacter>>, IObserver
     {
+        private const string AnimationSpeedMultiplier = "SpeedMultiplier";
         private const string AttackTrigger = "Attack";
         private const string DeadTrigger = "Dead";
 
@@ -23,17 +24,23 @@ namespace Character
             _animator = animator;
         }
 
-        //IRecevier
+        //IRecevier - animation
         public void HandleCommand(AnimationValue<AbstractCharacter> inputValue)
         {
             _animator.SetFloat(_animatonKeys[inputValue.animationType], inputValue.animationValue);
             _currentTypeAnimation = inputValue.animationType;
             if (inputValue.isAttack)
             {
-                _animator.SetTrigger(AttackTrigger);//???
+                _animator.SetTrigger(AttackTrigger);
                 _isAttackEvent = true;
             }
             if (inputValue.isDead) _animator.SetTrigger(DeadTrigger);
+        }
+
+        //IReceiver - animation speed
+        public void HandleCommand(AnimationSpeedValue<AbstractCharacter> inputValue)
+        {
+            _animator.SetFloat(AnimationSpeedMultiplier, inputValue.multiplier);
         }
 
         public void UpdateObserver(Type subjectTypeCallback)

@@ -1,8 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameCore;
 
 namespace Character
 {
+    public enum SpeedStatus
+    {
+        NormalSpeed,
+        RunSpeed,
+        ExtraRunSpeed,
+    }
+
     public enum HealthStatus
     {
         MaxHealth,
@@ -10,61 +18,75 @@ namespace Character
         LowHealth,
     }
 
-    public class StatusController : IReceiver<DamageValue<AbstractCharacter>>, IReceiver<HealingValue<AbstractCharacter>>
+    public class StatusController : IReceiver<AnimationSpeedValue<AbstractCharacter>>,
+                                    IReceiver<DamageValue<AbstractCharacter>>,
+                                    IReceiver<HealingValue<AbstractCharacter>>
     {
+        private const float ConstSpeedModificator = 10f;
+
+        public SpeedStatus speedStatus { get; private set; }
+
         private event Action _deadAction;
+        private readonly Dictionary<SpeedStatus, float> speedModificator;
 
         public readonly int maxHealth;
         public readonly int maxEnergy;
         public readonly float maxSpeed;
 
-        private int _currentHealth;
+        public int currentHealth { get; private set; }
         private int _currentEnergy;
-        
+
         private float _reloadValue;
         private float _reloadTime;
         private float _healingPower;
 
+        public bool isPatrole;
         public bool isRange;
         public bool isCombat;
         public bool isHunting;
         public bool isRetreat;
 
         //test
-        public bool isChaet;
+        public bool isCheat { get; private set; }
 
 
         public StatusController(CharacterValueSO valueSO, Action deadAction)
         {
             _deadAction += deadAction;
 
+            speedModificator = valueSO.GetSpeedModificator();
+
             maxHealth = valueSO.characterHealth;
             maxEnergy = valueSO.characterEnergy;
             maxSpeed = valueSO.characterSpeed;
 
-            _currentHealth = maxHealth;
+            currentHealth = maxHealth;
             _currentEnergy = maxEnergy;
 
             _reloadValue = valueSO.characterReload;
-
-
+            
             //test
-            isChaet = valueSO.isCheat;
+            isCheat = valueSO.isCheat;
+        }
+
+        public void HandleCommand(AnimationSpeedValue<AbstractCharacter> value)
+        {
+            speedStatus = value.speedStatus;
         }
 
         public void HandleCommand(DamageValue<AbstractCharacter> value)
         {
-            if (isChaet) return;
+            if (isCheat) return;
             if (isRetreat) isRetreat = false;
-            var deltaDamage = _currentHealth - value.damageValue;
-            _currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
-            CustomDebug.LogMessage(_currentHealth);
+            var deltaDamage = currentHealth - value.damageValue;
+            currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
+            CustomDebug.LogMessage(currentHealth);
         }
 
         public void HandleCommand(HealingValue<AbstractCharacter> value)
         {
-            var deltaHealing = _currentHealth + value.healingValue;
-            _currentHealth = (deltaHealing >= maxHealth) ? maxHealth : deltaHealing;
+            var deltaHealing = currentHealth + value.healingValue;
+            currentHealth = (deltaHealing >= maxHealth) ? maxHealth : deltaHealing;
         }
 
         private int Dead()
@@ -92,13 +114,13 @@ namespace Character
             switch (limit)
             {
                 case (HealthStatus.MaxHealth):
-                    result = _currentHealth >= maxHealth;
+                    result = currentHealth >= maxHealth;
                     break;
                 case (HealthStatus.MediumHealth):
-                    result = _currentHealth <= maxHealth * 0.5f;
+                    result = currentHealth <= maxHealth * 0.5f;
                     break;
                 case (HealthStatus.LowHealth):
-                    result = _currentHealth <= maxHealth * 0.25f;
+                    result = currentHealth <= maxHealth * 0.25f;
                     break;
                 default:
                     break;
@@ -106,9 +128,21 @@ namespace Character
             return result;
         }
 
-        public void RefreshHelth(ref int hp_visual)//test functions to visual
+        public float CalculationCharacterSpeed(SpeedStatus speedStatus)
         {
-            hp_visual = _currentHealth;
+            return maxSpeed * speedModificator[speedStatus];
+        }
+
+        public float CalculationSpeedModificator(SpeedStatus speedStatus)
+        {
+            return maxSpeed * speedModificator[speedStatus] / ConstSpeedModificator;
+        }
+
+        public float GetSpeedModificator()
+        {
+            float value = 0f;
+            value = (float)speedStatus + 1;
+            return value;
         }
     }
 }

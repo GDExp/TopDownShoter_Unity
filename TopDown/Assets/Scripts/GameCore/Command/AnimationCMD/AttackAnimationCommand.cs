@@ -3,25 +3,17 @@ using Character;
 
 namespace GameCore
 {
-    class AttackAnimationCommand : BaseAnimationCommand
+    class AttackAnimationCommand : BaseAnimationCommand<AnimationValue<AbstractCharacter>>
     {
-        private readonly bool isAttack;
         private readonly IReceiver<AnimationValue<AbstractCharacter>> _combatReceiver;
 
         public AttackAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0, bool attackStatus = false) 
-            : base(invoker, animationType, animationValue)
+            : base(invoker)
         {
-            _receiver = invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>;
-            _combatReceiver = invoker.GetCombatController() as IReceiver<AnimationValue<AbstractCharacter>>;
-            isAttack = attackStatus;
-        }
+            argValue = new AnimationValue<AbstractCharacter>(invoker, animationType, animationValue, attackStatus);
 
-        public override void Execute()
-        {
-            var argValue = 
-                new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue, attack: isAttack);
-            _receiver?.HandleCommand(argValue);
-            _combatReceiver?.HandleCommand(argValue);
+            receivers.Add(invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>);
+            receivers.Add(invoker.GetCombatController() as IReceiver<AnimationValue<AbstractCharacter>>);
         }
     }
 }

@@ -3,18 +3,13 @@ using Character;
 
 namespace GameCore
 {
-    class DeadAnimationCommand : BaseAnimationCommand
+    class DeadAnimationCommand : BaseAnimationCommand<AnimationValue<AbstractCharacter>>
     {
 
-        public DeadAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0) : base(invoker, animationType, animationValue)
+        public DeadAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0) : base(invoker)
         {
-            _receiver = invoker.GetAnimationController() as AnimationController;
-        }
-
-        public override void Execute()
-        {
-            var argValue = new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue, dead: true);
-            _receiver?.HandleCommand(argValue);
+            argValue = new AnimationValue<AbstractCharacter>(invoker, animationType, animationValue);
+            receivers.Add(invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>);
         }
     }
 }

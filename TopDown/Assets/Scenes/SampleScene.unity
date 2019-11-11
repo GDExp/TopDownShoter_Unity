@@ -258,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.4226183, y: 0, z: 0, w: 0.9063078}
-  m_LocalPosition: {x: 8.499111, y: 50, z: -39.313805}
+  m_LocalPosition: {x: -98.5, y: 50, z: -127.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 628347543}
   - component: {fileID: 628347542}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,12 +457,12 @@ PrefabInstance:
     - target: {fileID: 3183043193463484711, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3183043193463254279, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.499111
+      value: -98.5
       objectReference: {fileID: 0}
     - target: {fileID: 3183043193463254279, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
@@ -472,7 +472,7 @@ PrefabInstance:
     - target: {fileID: 3183043193463254279, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6861973
+      value: -87.2
       objectReference: {fileID: 0}
     - target: {fileID: 3183043193463254279, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
@@ -520,6 +520,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ab509411ce639b2489d5320eed5af626,
         type: 2}
+    - target: {fileID: 3183043193463484716, guid: b7dcd700a69c82749ad2d0a8c8751718,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dcd700a69c82749ad2d0a8c8751718, type: 3}
 --- !u!1001 &3894765984497930933
@@ -533,6 +538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882660692889076390, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1882660692888723078, guid: 692a81c65c7898e4caa26cbeec87eebb,
         type: 3}
@@ -594,6 +604,11 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1882660692889076397, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 3894765984641938945, guid: 692a81c65c7898e4caa26cbeec87eebb,
         type: 3}
       propertyPath: visionRadius
@@ -604,6 +619,22 @@ PrefabInstance:
       propertyPath: attackDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3894765984641938945, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: labelDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894765984641938945, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: patrolDistance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894765984641938945, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: characterValue
+      value: 
+      objectReference: {fileID: 11400000, guid: 6bde4bdd2699ec54798d3dc88b711da9,
+        type: 2}
     - target: {fileID: 1882660692888723272, guid: 692a81c65c7898e4caa26cbeec87eebb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

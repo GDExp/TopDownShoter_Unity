@@ -18,4 +18,7 @@ MonoBehaviour:
   characterEnergy: 200
   characterReload: 0.5
   characterSpeed: 10
+  normalModificator: 1
+  runModificator: 1.5
+  extraRunModifictaor: 2
   isCheat: 1

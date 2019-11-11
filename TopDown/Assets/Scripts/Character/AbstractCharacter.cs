@@ -27,10 +27,7 @@ namespace Character
         private CombatController<AbstractCharacter> _combatController;
         
         private Dictionary<Type, List<IObserver>> _observers;
-
-        //test visual
-        public int hp_test;
-
+                
         private void Start()
         {
             GameCore.GameController.Instance.AddCharacterInList(this);
@@ -205,12 +202,6 @@ namespace Character
         protected virtual void CharacterDead()
         {
             stateMachine.ChangeState(typeof(Dead));
-        }
-
-        //test - visual debug
-        public void TestHPrefresh()
-        {
-            statusController.RefreshHelth(ref hp_test);
         }
     }
 }
