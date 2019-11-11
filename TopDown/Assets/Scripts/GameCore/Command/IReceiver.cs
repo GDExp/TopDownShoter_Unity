@@ -1,6 +1,6 @@
 ﻿namespace GameCore
 {
-    interface IReceiver<T>
+    public interface IReceiver<T>
     {
         void HandleCommand(T obj);
     }

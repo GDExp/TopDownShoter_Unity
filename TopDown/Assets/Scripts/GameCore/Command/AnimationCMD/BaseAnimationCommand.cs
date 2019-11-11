@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using Character;
 
 namespace GameCore
 {
-    class BaseAnimationCommand : PatternCommand<AbstractCharacter>
+    class BaseAnimationCommand<T> : PatternCommand<AbstractCharacter>
     {
-        protected IReceiver<AnimationValue<AbstractCharacter>> _receiver;
-        protected readonly Type _animationType;
-        protected readonly float _animationValue;
+        protected T argValue;
+        protected List<IReceiver<T>> receivers;
 
-        public BaseAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0) : base(invoker)
+        public BaseAnimationCommand(AbstractCharacter invoker) : base(invoker)
         {
-            _animationType = animationType;
-            _animationValue = animationValue;
+            receivers = new List<IReceiver<T>>();
+        }
+
+        public override void Execute()
+        {
+            for (int i = 0; i < receivers.Count; ++i) receivers[i]?.HandleCommand(argValue);
         }
     }
 }

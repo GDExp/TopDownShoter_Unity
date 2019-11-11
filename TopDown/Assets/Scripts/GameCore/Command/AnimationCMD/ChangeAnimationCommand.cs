@@ -3,17 +3,13 @@ using Character;
 
 namespace GameCore
 {
-    class ChangeAnimationCommand : BaseAnimationCommand
+    class ChangeAnimationCommand : BaseAnimationCommand<AnimationValue<AbstractCharacter>>
     {
         public ChangeAnimationCommand(AbstractCharacter invoker, Type animationType, float animationValue = 0) 
-            : base(invoker, animationType, animationValue)
+            : base(invoker)
         {
-            _receiver = invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>;
-        }
-
-        public override void Execute()
-        {
-            _receiver?.HandleCommand(new AnimationValue<AbstractCharacter>(_invoker, _animationType, _animationValue));
+            argValue = new AnimationValue<AbstractCharacter>(invoker, animationType, animationValue);
+            receivers.Add(invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>);
         }
     }
 }

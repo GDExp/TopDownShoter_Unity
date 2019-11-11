@@ -9,10 +9,6 @@ public class PrefabsLibrary : ScriptableObject
 
     public void GetConfigLibrary(Dictionary<Type, GameObject> objectLibrary)
     {
-        for(int i = 0; i < projectiles.Count; ++i)
-        {
-            Debug.Log($"type - {projectiles[i].GetType()}");
-            objectLibrary.Add(projectiles[i].GetType(), projectiles[i].gameObject);
-        }
+        for(int i = 0; i < projectiles.Count; ++i) objectLibrary.Add(projectiles[i].GetType(), projectiles[i].gameObject);
     }
 }

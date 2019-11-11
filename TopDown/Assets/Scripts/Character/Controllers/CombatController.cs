@@ -34,12 +34,13 @@ namespace Character
         {
             _owner = owner;
             _transform = owner.transform;
+            var characterComponent = owner.GetComponent<CharacterController>();
 
             //test
             var attackPoint = new GameObject("AttackPoint");
             this.attackPoint = attackPoint.transform;
             this.attackPoint.SetParent(_transform);
-            this.attackPoint.position = _transform.position + new Vector3(0f, 2f, 3f);
+            this.attackPoint.position = _transform.position + new Vector3(0f, characterComponent.height/2f, characterComponent.radius * 3f);
             currentAttackType = owner.currentAttackType;//test
             rangePower = 25f;//test
         }

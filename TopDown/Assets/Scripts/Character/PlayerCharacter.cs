@@ -13,8 +13,9 @@ namespace Character
         protected override void SetupCharacter()
         {
             base.SetupCharacter();
-            navigationController.SetAgentSpeed(statusController.maxSpeed);
             attackDistance = navigationController.GetAgentStopDistance();//if only melee attack type
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(this, SpeedStatus.RunSpeed);
+            speedCMD.Execute();
         }
 
         public override void UpdateCharacter()

@@ -21,6 +21,7 @@ namespace GameCore.Factory
                 { typeof(Idle), new Idle(owner) },
                 { typeof(Move), new Move(owner) },
                 { typeof(Attack), new Attack(owner) },
+                { typeof(Dead),new Dead(owner) },
             };
             return newDictionary;
         }

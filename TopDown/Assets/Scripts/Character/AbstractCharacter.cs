@@ -10,6 +10,8 @@ using Observer;
 namespace Character
 {
     [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+    [RequireComponent(typeof(UnityEngine.AI.NavMeshObstacle))]
+    [RequireComponent(typeof(CharacterController))]
     public class AbstractCharacter : MonoBehaviour, ICharacter, ISubject
     {
         public CharacterValueSO characterValue;
@@ -25,10 +27,7 @@ namespace Character
         private CombatController<AbstractCharacter> _combatController;
         
         private Dictionary<Type, List<IObserver>> _observers;
-
-        //test visual
-        public int hp_test;
-
+                
         private void Start()
         {
             GameCore.GameController.Instance.characterModule.AddElementinList(this);
@@ -145,7 +144,7 @@ namespace Character
 
         private void SetupStatusController()
         {
-            statusController = new StatusController(characterValue);
+            statusController = new StatusController(characterValue, CharacterDead);
         }
 
         private void SetupAnimationController()
@@ -200,10 +199,9 @@ namespace Character
             Notify(typeof(AnimationEventCallback));
         }
 
-        //test - visual debug
-        public void TestHPrefresh()
+        protected virtual void CharacterDead()
         {
-            statusController.RefreshHelth(ref hp_test);
+            stateMachine.ChangeState(typeof(Dead));
         }
     }
 }

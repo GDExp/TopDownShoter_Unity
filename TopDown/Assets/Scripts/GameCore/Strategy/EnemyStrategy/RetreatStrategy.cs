@@ -25,10 +25,11 @@ namespace GameCore.Strategy
         {
             Vector3 direction = (enemy.targetTransform.position + enemyTransform.position).normalized;
             _point = enemyTransform.position + direction * enemy.visionRadius * 1.5f;
-            Debug.Log(_point);
 
             navigationController.SetCurrentPoint(_point);
-            navigationController.SetAgentSpeed(statusController.maxSpeed * 1.25f);
+
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.ExtraRunSpeed);
+            speedCMD.Execute();
 
             statusController.isRetreat = true;
             statusController.isHunting = false;
@@ -54,8 +55,7 @@ namespace GameCore.Strategy
 
         private bool CheckDistanceToPoint()
         {
-            bool check = (enemyTransform.position - _point).magnitude < navigationController.GetAgentStopDistance();
-            return check;
+            return (enemyTransform.position - _point).magnitude < navigationController.GetAgentStopDistance();
         }
 
         private void QuickHealing()
@@ -65,13 +65,13 @@ namespace GameCore.Strategy
                 _healingTimer = Time.time + 1.5f;
                 var healingCommand = new HealingCommand(enemy, enemy.healingPower);
                 healingCommand.Execute();
-                statusController.RefreshHelth(ref enemy.hp_test);//test visual
             }
         }
 
         private void StopMoveToPoint()
         {
-            navigationController.SetAgentSpeed(statusController.maxSpeed * 0.5f);//!!!
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.NormalSpeed);
+            speedCMD.Execute();
             stateMachine.ChangeState(typeof(Idle));
         }
     }

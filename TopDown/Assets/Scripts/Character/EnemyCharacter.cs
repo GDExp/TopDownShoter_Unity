@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameCore;
 using GameCore.Strategy;
 
 
@@ -26,29 +27,34 @@ namespace Character
 
         private float distanceToPlayer;
         public float visionRadius;// to do setup in editor - prefab
+        [Range(0f, 200f)]
+        public float patrolDistance;//to do setup in editor
         [Range(0f,100f)]
         public float brainWeight;// to do setup in editor - prafab
         public float attackDistance;// to do setup in editor - prefab
         public float targetSpeed { get; private set; }
         public int healingPower;// to do setup in editor - prefab
 
+        public bool isDead { get; private set; }
         public bool isSmart { get; private set; }
         private bool isRetreatOnce;
 
         protected override void SetupCharacter()
         {
+            tag = "Enemy";
             isPlayMode = true;
             base.SetupCharacter();
             strSwither = new StrategySwithcer();
             startPosition = transform.localPosition;
             isSmart = brainWeight >= Random.Range(45f, 75f);
 
-            currentTarget = GameCore.GameController.Instance.characterModule.player;
-            targetTransform = currentTarget.transform;
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(this, SpeedStatus.NormalSpeed);
+            speedCMD.Execute();
 
-            navigationController.SetAgentSpeed(statusController.maxSpeed * 0.6f);//test
+            currentTarget = GameController.Instance.characterModule.player;// test
+            targetTransform = currentTarget.transform;//test
 
-            attackDistance = navigationController.GetAgentStopDistance();//test only malee attack type;
+            attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
 
             SetupStrategy();
             StartCoroutine(CheckTargetDistance());
@@ -86,6 +92,7 @@ namespace Character
         public override void UpdateCharacter()
         {
             base.UpdateCharacter();
+            if (isDead) return;
             if (distanceToPlayer <= visionRadius && !statusController.isRetreat)
             {
                 if (distanceToPlayer <= attackDistance) strSwither.SetStrategy(enemyStrategy[TypeConduct.Attack]);
@@ -115,19 +122,40 @@ namespace Character
             return distanceToPlayer < visionRadius;
         }
 
+        protected override void CharacterDead()
+        {
+            isDead = true;
+            base.CharacterDead();
+        }
+
 #if UNITY_EDITOR
         // to do - вынос в отдельный класс
         // only editor visual
         public string enemyStatus;//visal strategy
+        [Range(0f,100f)]
+        public float labelDistance;
         private bool isPlayMode;
+
         private void OnDrawGizmosSelected()
         {
+            int visualHP = (statusController is null) ? 0 : statusController.currentHealth;
+            //character visual
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere((isPlayMode) ? startPosition : transform.position, 1f);
+            var drawPosition = (isPlayMode) ? startPosition : transform.position;
+            Gizmos.DrawSphere(drawPosition, 1f);
             Gizmos.DrawWireSphere(transform.position, visionRadius);
+
             GUIStyle style = new GUIStyle();
-            style.fontSize = 18;
-            UnityEditor.Handles.Label(transform.position + Vector3.up * 7f, $"<color=yellow>{enemyStatus}</color>", style);
+            style.fontSize = 20;
+            var positionLabel = transform.position + Vector3.up * labelDistance;
+            float step = 5f;
+            UnityEditor.Handles.Label(positionLabel + Vector3.up * step, $"<color=yellow>{enemyStatus}</color>", style);
+            UnityEditor.Handles.Label(positionLabel + Vector3.up * 2 * step, $"<color=yellow>{visualHP}</color>", style);
+
+
+            //for patrol distance
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(drawPosition, patrolDistance);
         }
 #endif
     }

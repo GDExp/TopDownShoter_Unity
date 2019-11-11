@@ -23,6 +23,9 @@ namespace GameCore.Strategy
         
         private void StartMove()
         {
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.ExtraRunSpeed);
+            speedCMD.Execute();
+
             statusController.isRetreat = true;
             navigationController.SetCurrentPoint(enemy.startPosition);
             stateMachine.ChangeState(typeof(Move));
@@ -35,6 +38,9 @@ namespace GameCore.Strategy
 
         private void EndMove()
         {
+            ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.NormalSpeed);
+            speedCMD.Execute();
+
             statusController.isHunting = false;
             statusController.isRetreat = false;
             stateMachine.ChangeState(typeof(Idle));
