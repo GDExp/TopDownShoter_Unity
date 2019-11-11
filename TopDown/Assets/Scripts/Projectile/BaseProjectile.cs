@@ -30,8 +30,7 @@ public class BaseProjectile : MonoBehaviour , IProjectile, IPoolableObject
 
     public void HitSomething()
     {
-        Debug.Log("HIT!");
-        GameCore.GameController.Instance.RemoveProjectileInList(this);
+        GameController.Instance.projectileModule.RemoveElementInList(this);
         ReturnInGamePool();
     }
 
@@ -66,7 +65,7 @@ public class BaseProjectile : MonoBehaviour , IProjectile, IPoolableObject
         transform.rotation = point.rotation;
 
         _lifeTime = Time.time + 5f;
-        GameCore.GameController.Instance.AddProjectileInList(this);
+        GameController.Instance.projectileModule.AddElementinList(this);
     }
 
     public void AddProjectileForce(float force)
@@ -88,7 +87,7 @@ public class BaseProjectile : MonoBehaviour , IProjectile, IPoolableObject
 
     public void DestroyProjectile()
     {
-        GameCore.GameController.Instance.objectsPool.ReturnObject(this);
+        GameController.Instance.objectsPool.ReturnObject(this);
     }
 
     #endregion

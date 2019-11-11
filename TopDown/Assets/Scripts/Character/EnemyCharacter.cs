@@ -43,11 +43,12 @@ namespace Character
             startPosition = transform.localPosition;
             isSmart = brainWeight >= Random.Range(45f, 75f);
 
-            currentTarget = GameCore.GameController.Instance.playerGO.GetComponent<PlayerCharacter>();// test
-            targetTransform = GameCore.GameController.Instance.playerGO.transform;//test
+            currentTarget = GameCore.GameController.Instance.characterModule.player;
+            targetTransform = currentTarget.transform;
+
             navigationController.SetAgentSpeed(statusController.maxSpeed * 0.6f);//test
 
-            attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
+            attackDistance = navigationController.GetAgentStopDistance();//test only malee attack type;
 
             SetupStrategy();
             StartCoroutine(CheckTargetDistance());

@@ -12,7 +12,7 @@ namespace GameCore.Strategy
         public AttackStrategy(AbstractCharacter owner, string status) : base(owner, status)
         {
             _enemy = owner.transform;
-            target = GameController.Instance.playerGO.transform;//test
+            target = enemy.targetTransform;//test
         }
 
         public override void DoStrategy()

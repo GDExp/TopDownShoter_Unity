@@ -3,7 +3,7 @@ using Character;
 
 namespace GameCore
 {
-    public class PlayerInputModule : BaseUpdatableModule<PlayerCharacter>
+    public class PlayerInputModule : BaseCharacterUpdatableModule<PlayerCharacter>
     {
         protected readonly Camera camera;
         protected readonly Transform cameraTransform;
