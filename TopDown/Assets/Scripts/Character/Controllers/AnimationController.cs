@@ -7,21 +7,29 @@ using Observer;
 namespace Character
 {
 
-    class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IReceiver<AnimationSpeedValue<AbstractCharacter>>, IObserver
+    public class AnimationController : IReceiver<AnimationValue<AbstractCharacter>>, IReceiver<AnimationSpeedValue<AbstractCharacter>>, IObserver
     {
         private const string AnimationSpeedMultiplier = "SpeedMultiplier";
         private const string AttackTrigger = "Attack";
+        private const string RangeStatus = "Is Range";
         private const string DeadTrigger = "Dead";
 
         private readonly Dictionary<Type, string> _animatonKeys;
         private Animator _animator;
         private Type _currentTypeAnimation;
         private bool _isAttackEvent;
+        private bool _isRangeKey;
         
         public AnimationController(Animator animator, Dictionary<Type,string> animationKeys)
         {
             _animatonKeys = animationKeys;
             _animator = animator;
+        }
+
+        public void SetRangeAnimation()
+        {
+            _isRangeKey = true;
+            _animator.SetBool(RangeStatus, _isRangeKey);
         }
 
         //IRecevier - animation
@@ -31,6 +39,7 @@ namespace Character
             _currentTypeAnimation = inputValue.animationType;
             if (inputValue.isAttack)
             {
+                _animator.SetBool(RangeStatus, inputValue.isRange);
                 _animator.SetTrigger(AttackTrigger);
                 _isAttackEvent = true;
             }
@@ -52,6 +61,7 @@ namespace Character
         {
             if (_isAttackEvent)
             {
+                _animator.SetBool(RangeStatus, _isRangeKey);
                 _isAttackEvent = false;
                 return;
             }

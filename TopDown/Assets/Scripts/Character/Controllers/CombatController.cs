@@ -42,7 +42,7 @@ namespace Character
             this.attackPoint.SetParent(_transform);
             this.attackPoint.position = _transform.position + new Vector3(0f, characterComponent.height/2f, characterComponent.radius * 3f);
             currentAttackType = owner.currentAttackType;//test
-            rangePower = 25f;//test
+            rangePower = 75f;//test
         }
 
         public void SetAttackLogic()

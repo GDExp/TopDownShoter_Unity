@@ -23,7 +23,7 @@ namespace Character
         protected StrategySwithcer strSwither;
         protected StatusController statusController;
 
-        private AnimationController _animationController;
+        public AnimationController animationController { get; private set; }
         private CombatController<AbstractCharacter> _combatController;
         
         private Dictionary<Type, List<IObserver>> _observers;
@@ -60,11 +60,6 @@ namespace Character
         public object GetNavigationController()
         {
             return navigationController;
-        }
-
-        public object GetAnimationController()
-        {
-            return _animationController;
         }
 
         public object GetCombatController()
@@ -151,8 +146,8 @@ namespace Character
         {
             CheckExceptionAnimatorComponent();
             var animator = SetupAnimator();
-            _animationController = new AnimationController(animator, characterValue.GetAnimationKeys());
-            Subscribe(typeof(AnimationEventCallback), _animationController as IObserver);
+            animationController = new AnimationController(animator, characterValue.GetAnimationKeys());
+            Subscribe(typeof(AnimationEventCallback), animationController as IObserver);
         }
 
         private void CheckExceptionAnimatorComponent()

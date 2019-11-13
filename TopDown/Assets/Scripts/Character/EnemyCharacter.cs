@@ -31,6 +31,7 @@ namespace Character
         public float patrolDistance;//to do setup in editor
         [Range(0f,100f)]
         public float brainWeight;// to do setup in editor - prafab
+        [Range(0f, 100f)]
         public float attackDistance;// to do setup in editor - prefab
         public float targetSpeed { get; private set; }
         public int healingPower;// to do setup in editor - prefab
@@ -43,7 +44,9 @@ namespace Character
         {
             tag = "Enemy";
             isPlayMode = true;
+
             base.SetupCharacter();
+
             strSwither = new StrategySwithcer();
             startPosition = transform.localPosition;
             isSmart = brainWeight >= Random.Range(45f, 75f);
@@ -54,12 +57,14 @@ namespace Character
             currentTarget = GameController.Instance.characterModule.player;// test
             targetTransform = currentTarget.transform;//test
 
-            attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
+            if (currentAttackType == AttackType.Melee) attackDistance = navigationController.GetAgentStopDistance();//only if malee attack type;
+            else animationController.SetRangeAnimation();
 
             SetupStrategy();
             StartCoroutine(CheckTargetDistance());
         }
 
+        //TO DO Add unquie AI logic in game core
         private void SetupStrategy()
         {
             enemyStrategy = new Dictionary<TypeConduct, IStrategy>
