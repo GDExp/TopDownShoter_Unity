@@ -9,7 +9,7 @@ namespace GameCore
             : base(invoker)
         {
             argValue = new AnimationValue<AbstractCharacter>(invoker, animationType, animationValue);
-            receivers.Add(invoker.GetAnimationController() as IReceiver<AnimationValue<AbstractCharacter>>);
+            receivers.Add(invoker.animationController as IReceiver<AnimationValue<AbstractCharacter>>);
         }
     }
 }

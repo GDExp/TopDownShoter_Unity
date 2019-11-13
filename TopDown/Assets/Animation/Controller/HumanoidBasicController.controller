@@ -130,7 +130,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: SpeedMultiplier
     m_Mirror: 0
-  m_BlendParameter: SpeedMultiplier
+  m_BlendParameter: AttackValue
   m_BlendParameterY: SpeedMultiplier
   m_MinThreshold: 0
   m_MaxThreshold: 1
