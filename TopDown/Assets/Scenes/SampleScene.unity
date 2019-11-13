@@ -703,7 +703,7 @@ PrefabInstance:
     - target: {fileID: 3183043193463484710, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
       propertyPath: currentAttackType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3183043193463484716, guid: b7dcd700a69c82749ad2d0a8c8751718,
         type: 3}
@@ -1704,6 +1704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentAttackType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894765984641938945, guid: 692a81c65c7898e4caa26cbeec87eebb,
+        type: 3}
+      propertyPath: brainWeight
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1882660692888723272, guid: 692a81c65c7898e4caa26cbeec87eebb,
         type: 3}

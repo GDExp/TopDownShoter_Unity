@@ -13,7 +13,7 @@ namespace GameCore
             argValue = new AnimationValue<AbstractCharacter>(invoker, animationType, animationValue, attack: attackStatus, range: rangeStatus);
 
             receivers.Add(invoker.animationController as IReceiver<AnimationValue<AbstractCharacter>>);
-            receivers.Add(invoker.GetCombatController() as IReceiver<AnimationValue<AbstractCharacter>>);
+            receivers.Add(invoker.combatController as IReceiver<AnimationValue<AbstractCharacter>>);
         }
     }
 }

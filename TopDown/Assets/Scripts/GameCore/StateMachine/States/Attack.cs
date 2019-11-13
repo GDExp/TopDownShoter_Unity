@@ -11,7 +11,7 @@ namespace GameCore.StateMachine
         public Attack(AbstractCharacter owner) : base(owner)
         {
             _status = owner.GetStatusController() as StatusController;
-            _combatController = owner.GetCombatController() as CombatController<AbstractCharacter>;
+            _combatController = owner.combatController;
         }
 
         public override void EnterState()
@@ -37,7 +37,7 @@ namespace GameCore.StateMachine
         {
             float attackValue = 0f;
             bool rangeAttack = false;
-            if(_combatController.currentAttackType == AttackType.Range)
+            if(_combatController.CurrentAttackType == AttackType.Range)
             {
                 attackValue = (owner is PlayerCharacter) ? 1f : 0f;//TODO переделать!
                 rangeAttack = true;

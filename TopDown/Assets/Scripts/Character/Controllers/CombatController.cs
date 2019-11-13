@@ -13,7 +13,7 @@ namespace Character
         Range,
     }
 
-    class CombatController<T> : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
+    public class CombatController<T> : IReceiver<AnimationValue<AbstractCharacter>>, IObserver
         where T : AbstractCharacter
     {
         public readonly Transform attackPoint;
@@ -23,10 +23,10 @@ namespace Character
         private readonly T _owner;
         private readonly Transform _transform;
 
-        public AttackType currentAttackType = AttackType.Melee;
+        private AttackType _currentAttackType;
+        public AttackType CurrentAttackType { get => _currentAttackType; }
 
         private IAttackLogic _currentAttackLogic;
-        private IStateMachine _stateMachine;
         private Vector3 _attackPointOffset;
         private bool isAttacked;
 
@@ -41,7 +41,7 @@ namespace Character
             this.attackPoint = attackPoint.transform;
             this.attackPoint.SetParent(_transform);
             this.attackPoint.position = _transform.position + new Vector3(0f, characterComponent.height/2f, characterComponent.radius * 3f);
-            currentAttackType = owner.currentAttackType;//test
+            _currentAttackType = owner.currentAttackType;//test
             rangePower = 75f;//test
         }
 
@@ -53,7 +53,7 @@ namespace Character
 
         public void SetAttackType(AttackType type)
         {
-            currentAttackType = type;
+            _currentAttackType = type;
         }
 
         public void HandleCommand(AnimationValue<AbstractCharacter> value)
@@ -73,8 +73,8 @@ namespace Character
             {
                 _owner.Unsubscribe(typeof(AnimationEventCallback), this);
                 ToggleIsCombat();
-                if (_stateMachine is null) _stateMachine = _owner.GetStateMachine() as IStateMachine;
-                _stateMachine.ChangeState(typeof(Idle));
+                var stateMachine = _owner.GetStateMachine() as IStateMachine;
+                stateMachine.ChangeState(typeof(Idle));
             }
         }
 

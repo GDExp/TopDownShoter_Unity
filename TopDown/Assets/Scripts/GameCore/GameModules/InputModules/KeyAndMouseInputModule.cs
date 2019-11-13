@@ -26,7 +26,9 @@ namespace GameCore
 
         protected override void SetAttackValue()
         {
-            isAttack = Input.GetMouseButtonDown(0) & status.CheckReloadTime(Time.time);
+            if(Input.GetMouseButtonDown(0)) owner.combatController.SetAttackType(AttackType.Melee);
+            if (Input.GetMouseButtonDown(1)) owner.combatController.SetAttackType(AttackType.Range);
+            isAttack = (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) ) & status.CheckReloadTime(Time.time);
         }
     }
 }

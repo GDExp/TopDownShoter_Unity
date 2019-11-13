@@ -24,7 +24,7 @@ namespace Character
         protected StatusController statusController;
 
         public AnimationController animationController { get; private set; }
-        private CombatController<AbstractCharacter> _combatController;
+        public CombatController<AbstractCharacter> combatController { get; private set; }
         
         private Dictionary<Type, List<IObserver>> _observers;
                 
@@ -60,11 +60,6 @@ namespace Character
         public object GetNavigationController()
         {
             return navigationController;
-        }
-
-        public object GetCombatController()
-        {
-            return _combatController;
         }
         
         //ICharacter
@@ -185,8 +180,8 @@ namespace Character
 
         private void SetupCombatController()
         {
-            _combatController = new CombatController<AbstractCharacter>(this);
-            _combatController.SetAttackLogic();
+            combatController = new CombatController<AbstractCharacter>(this);
+            combatController.SetAttackLogic();
         }
 
         private void CallAnimationEvent()

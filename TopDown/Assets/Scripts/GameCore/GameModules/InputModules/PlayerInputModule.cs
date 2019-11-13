@@ -39,11 +39,20 @@ namespace GameCore
             if (isJoystick) direction = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y - player.position.y));
             else direction = movePoint;
 
-            Quaternion look_direction = Quaternion.LookRotation(direction - player.position);
-            player.localRotation = Quaternion.Euler(player.up * look_direction.eulerAngles.y);
+            Quaternion lookDirection = Quaternion.LookRotation(direction - player.position);
+            player.localRotation = Quaternion.Euler(player.up * lookDirection.eulerAngles.y);
             player.TransformDirection(direction - player.position);
         }
         protected virtual void SetMoveValue() { }
         protected virtual void SetAttackValue() { }
+
+        protected Vector3 GetMousePoitionByCamera()
+        {
+            Vector3 mousePosition = Vector3.zero;
+
+            mousePosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y - player.position.y));
+
+            return mousePosition;
+        }
     }
 }
