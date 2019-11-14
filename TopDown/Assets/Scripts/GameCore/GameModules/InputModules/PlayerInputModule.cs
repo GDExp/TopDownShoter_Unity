@@ -8,7 +8,6 @@ namespace GameCore
         protected readonly Camera camera;
         protected readonly Transform cameraTransform;
         protected readonly Transform player;
-        protected readonly StatusController status;
 
         public Vector3 movePoint { get; protected set; }
 
@@ -21,7 +20,6 @@ namespace GameCore
             camera = Camera.main;
             cameraTransform = camera.transform;
             player = owner.transform;
-            status = owner.GetStatusController() as StatusController;
         }
 
         public override void OnUpdate()

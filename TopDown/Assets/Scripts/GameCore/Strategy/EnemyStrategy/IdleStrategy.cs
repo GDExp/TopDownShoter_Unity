@@ -25,12 +25,12 @@ namespace GameCore.Strategy
             IdleHealing();
             if (Time.time >= _timer && !isMovePoint) StartMoveToPoint();
             CheckDistanceToPoint();
-            if (_distance < navigationController.GetAgentStopDistance() && isMovePoint) EndMoveToPoint();
+            if (_distance < owner.NavigationController.GetAgentStopDistance() && isMovePoint) EndMoveToPoint();
         }
         
         private void IdleHealing()
         {
-            if (Time.time < _timerHeal && !statusController.CheckCurrentHealthToLimit(HealthStatus.MaxHealth)) return;
+            if (Time.time < _timerHeal && !owner.StatusController.CheckCurrentHealthToLimit(HealthStatus.MaxHealth)) return;
             _timerHeal = Time.time + 5f;
             var healingCommand = new HealingCommand(enemy, enemy.healingPower);
             healingCommand.Execute();
@@ -40,14 +40,14 @@ namespace GameCore.Strategy
         {
             var point = Random.insideUnitCircle * enemy.patrolDistance;
             _randomPoint = enemy.startPosition + new Vector3(point.x, 0f, point.y);
-            navigationController.SetCurrentPoint(_randomPoint);
+            owner.NavigationController.SetCurrentPoint(_randomPoint);
             stateMachine.ChangeState(typeof(Move));
             isMovePoint = true;
         }
 
         private void CheckDistanceToPoint()
         {
-            if (statusController.isHunting || !isMovePoint) return;
+            if (owner.StatusController.isHunting || !isMovePoint) return;
             _distance = (enemyTransform.position - _randomPoint).magnitude;
         }
 

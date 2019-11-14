@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using GameCore.Strategy;
-using GameCore.StateMachine;
+﻿using GameCore.StateMachine;
 using Character;
 
 namespace GameCore.Strategy
@@ -16,9 +14,9 @@ namespace GameCore.Strategy
         public override void DoStrategy()
         {
             base.DoStrategy();
-            if(!statusController.isRetreat) StartMove();
+            if(!owner.StatusController.isRetreat) StartMove();
             CheckDistanceToPoint();
-            if(distance < navigationController.GetAgentStopDistance()) EndMove();
+            if(distance < owner.NavigationController.GetAgentStopDistance()) EndMove();
         }
         
         private void StartMove()
@@ -26,8 +24,8 @@ namespace GameCore.Strategy
             ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.ExtraRunSpeed);
             speedCMD.Execute();
 
-            statusController.isRetreat = true;
-            navigationController.SetCurrentPoint(enemy.startPosition);
+            owner.StatusController.isRetreat = true;
+            owner.NavigationController.SetCurrentPoint(enemy.startPosition);
             stateMachine.ChangeState(typeof(Move));
         }
 
@@ -41,8 +39,8 @@ namespace GameCore.Strategy
             ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.NormalSpeed);
             speedCMD.Execute();
 
-            statusController.isHunting = false;
-            statusController.isRetreat = false;
+            owner.StatusController.isHunting = false;
+            owner.StatusController.isRetreat = false;
             stateMachine.ChangeState(typeof(Idle));
         }
     }

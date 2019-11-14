@@ -143,12 +143,20 @@ namespace Character
 
         private void OnDrawGizmosSelected()
         {
-            int visualHP = (statusController is null) ? 0 : statusController.currentHealth;
             //character visual
             Gizmos.color = Color.red;
             var drawPosition = (isPlayMode) ? startPosition : transform.position;
             Gizmos.DrawSphere(drawPosition, 1f);
             Gizmos.DrawWireSphere(transform.position, visionRadius);
+            
+            //for patrol distance
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(drawPosition, patrolDistance);
+        }
+
+        private void OnDrawGizmos()
+        {
+            int visualHP = (statusController is null) ? 0 : statusController.CurrentHealth;
 
             GUIStyle style = new GUIStyle();
             style.fontSize = 20;
@@ -156,11 +164,6 @@ namespace Character
             float step = 5f;
             UnityEditor.Handles.Label(positionLabel + Vector3.up * step, $"<color=yellow>{enemyStatus}</color>", style);
             UnityEditor.Handles.Label(positionLabel + Vector3.up * 2 * step, $"<color=yellow>{visualHP}</color>", style);
-
-
-            //for patrol distance
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(drawPosition, patrolDistance);
         }
 #endif
     }

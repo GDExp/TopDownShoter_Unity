@@ -73,8 +73,7 @@ namespace Character
             {
                 _owner.Unsubscribe(typeof(AnimationEventCallback), this);
                 ToggleIsCombat();
-                var stateMachine = _owner.GetStateMachine() as IStateMachine;
-                stateMachine.ChangeState(typeof(Idle));
+                _owner.StateMachine.ChangeState(typeof(Idle));
             }
         }
 
@@ -86,8 +85,7 @@ namespace Character
 
         private void ToggleIsCombat()
         {
-            var status = _owner.GetStatusController() as StatusController;
-            status.isCombat = isAttacked;
+            _owner.StatusController.isCombat = isAttacked;
         }
     }
 }

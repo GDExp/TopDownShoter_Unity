@@ -17,7 +17,7 @@ namespace GameCore.Strategy
         public override void DoStrategy()
         {
             base.DoStrategy();
-            if (!statusController.isRetreat) SetRetreatPoint();
+            if (!owner.StatusController.isRetreat) SetRetreatPoint();
             else WorkRetreat();
         }
 
@@ -26,13 +26,13 @@ namespace GameCore.Strategy
             Vector3 direction = (enemy.targetTransform.position + enemyTransform.position).normalized;
             _point = enemyTransform.position + direction * enemy.visionRadius * 1.5f;
 
-            navigationController.SetCurrentPoint(_point);
+            owner.NavigationController.SetCurrentPoint(_point);
 
             ICommand speedCMD = new ChangeAnimationSpeedCommand(enemy, SpeedStatus.ExtraRunSpeed);
             speedCMD.Execute();
 
-            statusController.isRetreat = true;
-            statusController.isHunting = false;
+            owner.StatusController.isRetreat = true;
+            owner.StatusController.isHunting = false;
 
             _lastTimeRetreat = Time.time + 120f;
             stateMachine.ChangeState(typeof(Move));
@@ -48,14 +48,14 @@ namespace GameCore.Strategy
 
         private void RefreshRetreatStatus()
         {
-            if (!statusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) statusController.isRetreat = false;
-            if (statusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) return;
+            if (!owner.StatusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) owner.StatusController.isRetreat = false;
+            if (owner.StatusController.CheckCurrentHealthToLimit(HealthStatus.MediumHealth)) return;
             _point = Vector3.zero;
         }
 
         private bool CheckDistanceToPoint()
         {
-            return (enemyTransform.position - _point).magnitude < navigationController.GetAgentStopDistance();
+            return (enemyTransform.position - _point).magnitude < owner.NavigationController.GetAgentStopDistance();
         }
 
         private void QuickHealing()

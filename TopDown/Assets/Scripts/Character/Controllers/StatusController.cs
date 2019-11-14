@@ -33,8 +33,10 @@ namespace Character
         public readonly int maxEnergy;
         public readonly float maxSpeed;
 
-        public int currentHealth { get; private set; }
+        public int CurrentHealth { get { return _currentHealth; } }
+
         private int _currentEnergy;
+        private int _currentHealth;
 
         private float _reloadValue;
         private float _reloadTime;
@@ -60,7 +62,7 @@ namespace Character
             maxEnergy = valueSO.characterEnergy;
             maxSpeed = valueSO.characterSpeed;
 
-            currentHealth = maxHealth;
+            _currentHealth = maxHealth;
             _currentEnergy = maxEnergy;
 
             _reloadValue = valueSO.characterReload;
@@ -78,15 +80,15 @@ namespace Character
         {
             if (isCheat) return;
             if (isRetreat) isRetreat = false;
-            var deltaDamage = currentHealth - value.damageValue;
-            currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
-            CustomDebug.LogMessage(currentHealth);
+            var deltaDamage = _currentHealth - value.damageValue;
+            _currentHealth = (deltaDamage > 0) ? deltaDamage : Dead();
+            CustomDebug.LogMessage(CurrentHealth);
         }
 
         public void HandleCommand(HealingValue<AbstractCharacter> value)
         {
-            var deltaHealing = currentHealth + value.healingValue;
-            currentHealth = (deltaHealing >= maxHealth) ? maxHealth : deltaHealing;
+            var deltaHealing = _currentHealth + value.healingValue;
+            _currentHealth = (deltaHealing >= maxHealth) ? maxHealth : deltaHealing;
         }
 
         private int Dead()
@@ -114,13 +116,13 @@ namespace Character
             switch (limit)
             {
                 case (HealthStatus.MaxHealth):
-                    result = currentHealth >= maxHealth;
+                    result = _currentHealth >= maxHealth;
                     break;
                 case (HealthStatus.MediumHealth):
-                    result = currentHealth <= maxHealth * 0.5f;
+                    result = _currentHealth <= maxHealth * 0.5f;
                     break;
                 case (HealthStatus.LowHealth):
-                    result = currentHealth <= maxHealth * 0.25f;
+                    result = _currentHealth <= maxHealth * 0.25f;
                     break;
                 default:
                     break;

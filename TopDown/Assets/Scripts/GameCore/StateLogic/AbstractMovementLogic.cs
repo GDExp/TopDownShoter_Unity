@@ -10,7 +10,7 @@ namespace GameCore.StateMachine
 
         public AbstractMovementLogic(T owner)
         {
-            navigationController = owner.GetNavigationController() as NavigationController;
+            navigationController = owner.NavigationController;
             isStoped = false;
         }
 

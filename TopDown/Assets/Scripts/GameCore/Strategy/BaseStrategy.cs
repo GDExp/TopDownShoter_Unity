@@ -11,7 +11,7 @@ namespace GameCore.Strategy
         public BaseStrategy(T owner)
         {
             this.owner = owner;
-            stateMachine = owner.GetStateMachine() as IStateMachine;
+            stateMachine = owner.StateMachine;
         }
 
         public virtual void DoStrategy()

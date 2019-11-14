@@ -14,8 +14,7 @@ namespace GameCore
         public OnlyMouseInputModule(PlayerCharacter owner) : base(owner)
         {
             isJoystick = false;
-            var navigation = owner.GetNavigationController() as NavigationController;
-            _stopDistance = navigation.GetAgentStopDistance();
+            _stopDistance = owner.NavigationController.GetAgentStopDistance();
         }
 
         protected override void LookAt()

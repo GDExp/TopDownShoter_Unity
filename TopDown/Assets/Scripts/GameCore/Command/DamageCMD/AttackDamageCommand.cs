@@ -9,13 +9,13 @@ namespace GameCore
 
         public AttackDamageCommand(AbstractCharacter invoker, AbstractCharacter owner, int value ) : base(invoker)
         {
-            _receiver = invoker?.GetStatusController() as StatusController;
+            _receiver = invoker?.StatusController;
             _damageValue = new DamageValue<AbstractCharacter>(owner, value);
         }
 
         public override void Execute()
         {
-            _receiver?.HandleCommand(_damageValue);
+            _receiver.HandleCommand(_damageValue);
         }
     }
 }

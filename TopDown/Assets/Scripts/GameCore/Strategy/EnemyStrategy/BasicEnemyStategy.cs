@@ -7,16 +7,12 @@ namespace GameCore.Strategy
     {
         protected readonly EnemyCharacter enemy;
         protected readonly Transform enemyTransform;
-        protected readonly NavigationController navigationController;
-        protected readonly StatusController statusController;
         private readonly string _status;
 
         public BasicEnemyStategy(AbstractCharacter owner, string status) : base(owner)
         {
             enemy = owner as EnemyCharacter;
             enemyTransform = owner.transform;
-            navigationController = owner.GetNavigationController() as NavigationController;
-            statusController = owner.GetStatusController() as StatusController;
             _status = status;
         }
 

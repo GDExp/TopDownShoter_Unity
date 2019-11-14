@@ -19,7 +19,7 @@ namespace GameCore.Strategy
         {
             base.DoStrategy();
             LookAtTarget();
-            if (!statusController.CheckReloadTime(Time.time) || statusController.isCombat) return;
+            if (!owner.StatusController.CheckReloadTime(Time.time) || owner.StatusController.isCombat) return;
             AttackTarget();
         }
         

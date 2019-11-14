@@ -5,13 +5,8 @@ namespace GameCore.StateMachine
 {
     class Attack : State<AbstractCharacter>
     {
-        private readonly StatusController _status;
-        private readonly CombatController<AbstractCharacter> _combatController;
-
         public Attack(AbstractCharacter owner) : base(owner)
         {
-            _status = owner.GetStatusController() as StatusController;
-            _combatController = owner.combatController;
         }
 
         public override void EnterState()
@@ -27,7 +22,7 @@ namespace GameCore.StateMachine
 
         public override void ExitState()
         {
-            _status.SetReloadTime(Time.time);
+            owner.StatusController.SetReloadTime(Time.time);
             CustomDebug.LogMessage("Attack exite!", DebugColor.red);
             ICommand command = new ChangeAnimationCommand(owner, GetType());
             command.Execute();
@@ -37,7 +32,7 @@ namespace GameCore.StateMachine
         {
             float attackValue = 0f;
             bool rangeAttack = false;
-            if(_combatController.CurrentAttackType == AttackType.Range)
+            if(owner.CombatController.CurrentAttackType == AttackType.Range)
             {
                 attackValue = (owner is PlayerCharacter) ? 1f : 0f;//TODO переделать!
                 rangeAttack = true;

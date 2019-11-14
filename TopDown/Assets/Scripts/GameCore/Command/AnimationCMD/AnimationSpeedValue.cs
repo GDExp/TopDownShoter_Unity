@@ -13,7 +13,7 @@ namespace GameCore
         {
             this.speedStatus = speedStatus;
 
-            var status = owner.GetStatusController() as StatusController;
+            var status = owner?.StatusController;
 
             multiplier = status.CalculationSpeedModificator(speedStatus);
             characterSpeed = status.CalculationCharacterSpeed(speedStatus);

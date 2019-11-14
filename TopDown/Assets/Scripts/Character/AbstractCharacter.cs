@@ -18,13 +18,20 @@ namespace Character
         public AttackType currentAttackType;//test - visual setup pool
         public ProjectileType currentProjectileType;//test - visual
 
+        public NavigationController NavigationController { get { return navigationController; } }
+        public IStateMachine StateMachine { get { return stateMachine; } }
+        public StrategySwithcer StrSwither { get { return strSwither; } }
+        public StatusController StatusController { get { return statusController; } }
+        public AnimationController AnimationController { get { return animationController; } }
+        public CombatController<AbstractCharacter> CombatController { get { return combatController; } }
+
         protected NavigationController navigationController;
         protected IStateMachine stateMachine;
         protected StrategySwithcer strSwither;
         protected StatusController statusController;
+        protected AnimationController animationController;
+        protected CombatController<AbstractCharacter> combatController;
 
-        public AnimationController animationController { get; private set; }
-        public CombatController<AbstractCharacter> combatController { get; private set; }
         
         private Dictionary<Type, List<IObserver>> _observers;
                 
@@ -45,21 +52,6 @@ namespace Character
                 var projectile = other.GetComponent<IProjectile>();
                 projectile.TakeDamage(this);
             }
-        }
-
-        public object GetStatusController()
-        {
-            return statusController;
-        }
-
-        public object GetStateMachine()
-        {
-            return stateMachine;
-        }
-        
-        public object GetNavigationController()
-        {
-            return navigationController;
         }
         
         //ICharacter

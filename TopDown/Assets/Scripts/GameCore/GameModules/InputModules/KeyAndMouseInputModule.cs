@@ -14,7 +14,7 @@ namespace GameCore
 
         protected override void LookAt()
         {
-            if(status .isCombat) return;
+            if(owner.StatusController.isCombat) return;
             base.LookAt();
         }
 
@@ -26,9 +26,9 @@ namespace GameCore
 
         protected override void SetAttackValue()
         {
-            if(Input.GetMouseButtonDown(0)) owner.combatController.SetAttackType(AttackType.Melee);
-            if (Input.GetMouseButtonDown(1)) owner.combatController.SetAttackType(AttackType.Range);
-            isAttack = (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) ) & status.CheckReloadTime(Time.time);
+            if(Input.GetMouseButtonDown(0)) owner.CombatController.SetAttackType(AttackType.Melee);
+            if (Input.GetMouseButtonDown(1)) owner.CombatController.SetAttackType(AttackType.Range);
+            isAttack = (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) ) & owner.StatusController.CheckReloadTime(Time.time);
         }
     }
 }

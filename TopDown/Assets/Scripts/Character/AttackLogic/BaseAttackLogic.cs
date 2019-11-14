@@ -11,7 +11,7 @@ namespace Character
         public BaseAttackLogic(T owner)
         {
             this.owner = owner;
-            combatController = owner.combatController as CombatController<T>;
+            combatController = owner.CombatController as CombatController<T>;
         }
 
         public void Attack()
@@ -22,17 +22,17 @@ namespace Character
 
         protected virtual void MeleeAttack()
         {
-            if (combatController.CurrentAttackType == AttackType.Range) return;
+            if (owner.CombatController.CurrentAttackType == AttackType.Range) return;
         }
         protected virtual void RangeAttack()
         {
-            if (combatController.CurrentAttackType == AttackType.Melee) return;
+            if (owner.CombatController.CurrentAttackType == AttackType.Melee) return;
             var gameController = GameCore.GameController.Instance;
             var type = gameController.projectileConvert.GetConvertProjectileType(owner.currentProjectileType);
             var go = gameController.objectsPool.ProvideObject(type) as IProjectile;
             go.SetupProjectile(owner);
-            go.SetStartPosition(combatController.attackPoint);
-            go.AddProjectileForce(combatController.rangePower);
+            go.SetStartPosition(owner.CombatController.attackPoint);
+            go.AddProjectileForce(owner.CombatController.rangePower);
         }
     }
 }

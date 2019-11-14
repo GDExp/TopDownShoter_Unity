@@ -10,14 +10,14 @@ namespace GameCore
 
         public HealingCommand(AbstractCharacter invoker, int value) : base(invoker)
         {
-            _receiver = invoker?.GetStatusController() as StatusController;
+            _receiver = invoker?.StatusController;
 
             _healingValue = new HealingValue<AbstractCharacter>(invoker, value);
         }
 
         public override void Execute()
         {
-            _receiver?.HandleCommand(_healingValue);
+            _receiver.HandleCommand(_healingValue);
         }
     }
 }
